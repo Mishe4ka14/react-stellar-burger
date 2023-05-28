@@ -6,14 +6,14 @@ function App() {
   return (
     <>
       <AppHeader/>
-      <div className={styles.app}>
+      {/* <div className={styles.app}>
         <pre style={{
           margin: "auto",
           fontSize: "1.5rem"
         }}>
           Измените src/components/app/app.jsx and сохраните для обновления.
         </pre>
-      </div>
+      </div> */}
     </>
   );
 }

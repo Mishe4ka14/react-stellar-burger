@@ -11,7 +11,6 @@ const Ingredient = ({ingredient}) => {
         <p className="text text_type_main-default mr-2 pt-1 pb-1" style={{fontSize: 20}}>{price}</p>
         <CurrencyIcon/>
       </div>
-      
       <p className="text text_type_main-default">{name}</p>
     </div>
   )

@@ -14,7 +14,7 @@ const BurgerConstructor = () => {
           thumbnail={data[0].image}
         />
       </div>
-      <ul className={`${styles.scroll} custom-scroll`} style={{overflowY: 'scroll', msOverflowX: 'hidden'}}>
+      <ul className={`${styles.scroll} custom-scroll`}>
         {data.map((ingredient) => {
           if (ingredient.__v === 1 ){   { /*условие нужно только для отображения некоторых ингредиентов пока нет запроса к API и взаимодействия с ингредиентами */} 
             return (

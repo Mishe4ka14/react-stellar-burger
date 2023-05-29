@@ -1,9 +1,8 @@
-import { data } from "../../utils/data";
 import Ingredient from "../ingredient/ingredient";
 import styles from "./ingredient-list.module.css"
+import PropTypes from 'prop-types';
 
-const IngredientList = ({ type }) => {
-  const filter = data.filter((ingredient) => ingredient.type === type);
+const IngredientList = ({ filter }) => {
 
   return (
     <li className={styles.container}>
@@ -13,5 +12,9 @@ const IngredientList = ({ type }) => {
     </li>
   );
 };
+
+IngredientList.propTypes = {
+  filter: PropTypes.array
+}
 
 export default IngredientList

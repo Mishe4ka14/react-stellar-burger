@@ -21,7 +21,7 @@ const BurgerIngredients = () => {
         </Tab>
       </div>
       <ul className={`${styles.scroll} custom-scroll`} style={{overflowY: 'scroll', msOverflowX: 'hidden'}}>
-          <h3 className="text text_type_main-medium mt-10 mb-6">Булки</h3>
+          <h3 className="text text_type_main-medium mb-6">Булки</h3>
           <IngredientList type="bun"/>
           <h3 className="text text_type_main-medium mt-10 mb-6">Соусы</h3>
           <IngredientList type="sauce"/>

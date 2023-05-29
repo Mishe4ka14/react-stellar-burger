@@ -123,7 +123,7 @@ export const data = [
      "image":"https://code.s3.yandex.net/react/code/mineral_rings.png",
      "image_mobile":"https://code.s3.yandex.net/react/code/mineral_rings-mobile.png",
      "image_large":"https://code.s3.yandex.net/react/code/mineral_rings-large.png",
-     "__v":0
+     "__v":1
   },
   {
      "_id":"60666c42cc7b410027a1a9ba",
@@ -137,7 +137,7 @@ export const data = [
      "image":"https://code.s3.yandex.net/react/code/sauce-01.png",
      "image_mobile":"https://code.s3.yandex.net/react/code/sauce-01-mobile.png",
      "image_large":"https://code.s3.yandex.net/react/code/sauce-01-large.png",
-     "__v":0
+     "__v":1
   },
   {
      "_id":"60666c42cc7b410027a1a9bd",
@@ -165,7 +165,7 @@ export const data = [
      "image":"https://code.s3.yandex.net/react/code/salad.png",
      "image_mobile":"https://code.s3.yandex.net/react/code/salad-mobile.png",
      "image_large":"https://code.s3.yandex.net/react/code/salad-large.png",
-     "__v":0
+     "__v":1
   },
   {
      "_id":"60666c42cc7b410027a1a9b3",

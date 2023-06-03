@@ -5,10 +5,21 @@ import BurgerConstructor from "../burger-constructor/burger-constructor";
 import { url } from "../../utils/constanst";
 import React, { useEffect, useState } from 'react';
 import { async } from "q";
-
+import Modal from "../modal/modal";
 
 function App() {
   const [ingredientsData, setIngredientsData] = useState(null)
+
+  const [modal, setModal] = React.useState(false);
+
+  const openModal = () => {
+    setModal(true)
+  }
+
+  const closeModal = () => {
+    setModal(false)
+  }
+
   useEffect(() => {
     const getIngredientData = async () => {
       try {const res = await fetch(`${url}`);
@@ -29,8 +40,9 @@ function App() {
       <AppHeader/>
       <main className={styles.main}>
         {ingredientsData !== null && <BurgerIngredients data={ingredientsData}/>}
-        {ingredientsData !== null && <BurgerConstructor data={ingredientsData}/>}
+        {ingredientsData !== null && <BurgerConstructor openModal={openModal} data={ingredientsData}/>}
       </main>
+      {modal && <Modal handleClose={closeModal}/>}
     </div>
   );
 }

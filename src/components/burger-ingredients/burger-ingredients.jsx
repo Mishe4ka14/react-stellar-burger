@@ -2,9 +2,8 @@ import styles from './burger-ingredients.module.css'
 import { Tab, } from '@ya.praktikum/react-developer-burger-ui-components'
 import React from 'react'
 import IngredientList from '../ingredient-list/ingredient-list'
-import { data } from "../../utils/data";
 
-const BurgerIngredients = () => { 
+const BurgerIngredients = ({data}) => { 
   const [current, setCurrent] = React.useState('bun')
   const buns = data.filter((ingredient) => ingredient.type === 'bun');
   const sauces = data.filter((ingredient) => ingredient.type === 'sauce');

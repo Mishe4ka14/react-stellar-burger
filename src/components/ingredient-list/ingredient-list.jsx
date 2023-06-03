@@ -14,7 +14,7 @@ const IngredientList = ({ filter }) => {
 };
 
 IngredientList.propTypes = {
-  filter: PropTypes.array
+  filter: PropTypes.arrayOf(PropTypes.object)
 }
 
 export default IngredientList

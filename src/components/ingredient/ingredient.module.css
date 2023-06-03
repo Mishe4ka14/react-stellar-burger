@@ -1,0 +1,17 @@
+.box {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-sizing: border-box;
+  width: 272px;
+}
+
+.container {
+  display: flex;
+  align-items: center;
+}
+
+.price {
+  font-size: 20px;
+}

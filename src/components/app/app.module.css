@@ -1,7 +1,14 @@
 .app {
   display: flex;
   flex-direction: column;
-  height: 100vh;
+  max-height: 100vh; 
   background-color: #131316;
   color: #f2f2f3;
+}
+
+.main {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  column-gap: 40px;
 }

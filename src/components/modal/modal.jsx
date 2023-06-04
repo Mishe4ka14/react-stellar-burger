@@ -7,7 +7,7 @@ import OrderModal from '../order-details/order-details';
 
 const modalRoot = document.getElementById('modal-root')
 
-const Modal = ({handleClose, child}) => {
+const Modal = ({handleClose, children}) => {
 
   const escClose = (e) => {
     (e.key === 'Escape' && handleClose())
@@ -24,7 +24,7 @@ const Modal = ({handleClose, child}) => {
       <ModalOverlay closeModal={handleClose}/>
       <div className={styles.container}>
         <div className={styles.close}><CloseIcon onClick={handleClose}/></div>
-        <OrderModal/>
+        {children}
       </div>
     </div>
   ), modalRoot)

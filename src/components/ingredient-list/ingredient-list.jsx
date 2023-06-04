@@ -2,14 +2,16 @@ import Ingredient from "../ingredient/ingredient";
 import styles from "./ingredient-list.module.css"
 import PropTypes from 'prop-types';
 
-const IngredientList = ({ filter }) => {
+const IngredientList = ({ filter, openModal }) => {
 
   return (
-    <li className={styles.container}>
+    <div className={styles.box}>
       {filter.map((ingredient) => (
-        <Ingredient key={ingredient._id} ingredient={ingredient} />
+        <div key={ingredient._id} className={styles.container} onClick={() => openModal(ingredient)}>
+          <Ingredient  ingredient={ingredient} onClick={openModal} />
+        </div>
       ))}
-    </li>
+    </div>
   );
 };
 

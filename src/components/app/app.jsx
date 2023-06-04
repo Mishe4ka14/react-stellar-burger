@@ -6,18 +6,28 @@ import { url } from "../../utils/constanst";
 import React, { useEffect, useState } from 'react';
 import { async } from "q";
 import Modal from "../modal/modal";
+import OrderModal from "../order-details/order-details";
+import IngredientDetails from "../ingredient-details/ingredient-details";
 
 function App() {
   const [ingredientsData, setIngredientsData] = useState(null)
 
-  const [modal, setModal] = React.useState(false);
+  const [modalOrder, setModalOrder] = useState(false);
+  const [modalIngredient, setModalIngredient] = useState(false);
+  const [ingredient, setIngredient] = React.useState({});
 
-  const openModal = () => {
-    setModal(true)
+  const openModalIngredient = (item) => {
+    setModalIngredient(true)
+    setIngredient(item)
+  }
+
+  const openModalOrder = () => {
+    setModalOrder(true)
   }
 
   const closeModal = () => {
-    setModal(false)
+    setModalOrder(false)
+    setModalIngredient(false)
   }
 
   useEffect(() => {
@@ -39,10 +49,15 @@ function App() {
     <div className={styles.app}>
       <AppHeader/>
       <main className={styles.main}>
-        {ingredientsData !== null && <BurgerIngredients data={ingredientsData}/>}
-        {ingredientsData !== null && <BurgerConstructor openModal={openModal} data={ingredientsData}/>}
+        {ingredientsData !== null && <BurgerIngredients openModal={openModalIngredient} data={ingredientsData}/>}
+        {ingredientsData !== null && <BurgerConstructor openModal={openModalOrder} data={ingredientsData}/>}
       </main>
-      {modal && <Modal handleClose={closeModal}/>}
+      {modalOrder && <Modal handleClose={closeModal} >
+        <OrderModal/>
+      </Modal>}
+      {modalIngredient && <Modal handleClose={closeModal} >
+        <IngredientDetails props={ingredient}/>
+      </Modal>}
     </div>
   );
 }

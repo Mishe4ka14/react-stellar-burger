@@ -2,11 +2,11 @@ import styles from './ingredient.module.css'
 import {CurrencyIcon, Counter} from '@ya.praktikum/react-developer-burger-ui-components'
 import PropTypes from 'prop-types';
 
-const Ingredient = ({ingredient}) => {
+const Ingredient = ({ingredient, onClick}) => {
   const {image, price, name, __v} = ingredient;
 
   return(
-    <div className={`${styles.box}`}>
+    <div className={`${styles.box}`} onClick={() => onClick(ingredient)}>
       {__v === 1 && <Counter count={1}/>} {/* выставляем условие для отображения счетчика пока нет реального добавления ингредиентов */}
       <img src={image} alt={name} />
       <div className={styles.container}>

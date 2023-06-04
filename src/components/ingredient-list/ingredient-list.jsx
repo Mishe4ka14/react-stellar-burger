@@ -16,7 +16,8 @@ const IngredientList = ({ filter, openModal }) => {
 };
 
 IngredientList.propTypes = {
-  filter: PropTypes.arrayOf(PropTypes.object)
+  filter: PropTypes.arrayOf(PropTypes.object),
+  openModal: PropTypes.func.isRequired
 }
 
 export default IngredientList

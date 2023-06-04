@@ -2,6 +2,7 @@ import styles from './burger-ingredients.module.css'
 import { Tab, } from '@ya.praktikum/react-developer-burger-ui-components'
 import React from 'react'
 import IngredientList from '../ingredient-list/ingredient-list'
+import PropTypes from 'prop-types';
 
 const BurgerIngredients = ({data, openModal}) => { 
   const [current, setCurrent] = React.useState('bun')
@@ -32,6 +33,11 @@ const BurgerIngredients = ({data, openModal}) => {
       </ul>
     </section>
   )
+}
+
+BurgerIngredients.propTypes = {
+  data: PropTypes.object.isRequired,
+  openModal: PropTypes.func.isRequired
 }
 
 export default BurgerIngredients

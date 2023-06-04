@@ -1,9 +1,9 @@
-import React, {useEffect, useState} from 'react'
+import React, {useEffect} from 'react'
 import ReactDOM from 'react-dom';
 import styles from './modal.module.css'
 import {CloseIcon} from '@ya.praktikum/react-developer-burger-ui-components'
 import ModalOverlay from '../modal-overlay/modal-overlay';
-import OrderModal from '../order-details/order-details';
+import PropTypes from 'prop-types';
 
 const modalRoot = document.getElementById('modal-root')
 
@@ -29,4 +29,9 @@ const Modal = ({handleClose, children}) => {
     </div>
   ), modalRoot)
   }
+
+  Modal.propTypes = {
+    handleClose: PropTypes.func.isRequired,
+    children: PropTypes.object.isRequired
+};
 export default Modal

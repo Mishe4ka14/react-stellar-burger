@@ -1,5 +1,6 @@
 import styles from './burger-constructor.module.css'
 import {ConstructorElement, DragIcon, Button, CurrencyIcon} from '@ya.praktikum/react-developer-burger-ui-components'
+import { burgerConstPropTypes } from '../../utils/prop-types'
 
 const BurgerConstructor = ({data, openModal}) => {
   return(
@@ -43,6 +44,11 @@ const BurgerConstructor = ({data, openModal}) => {
       </div>
     </section>
   )
+}
+
+BurgerConstructor.propTypes = {
+  data: burgerConstPropTypes.data,
+  openModal: burgerConstPropTypes.openModal
 }
 
 export default BurgerConstructor

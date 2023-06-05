@@ -3,7 +3,7 @@ import { Tab, } from '@ya.praktikum/react-developer-burger-ui-components'
 import React from 'react'
 import IngredientList from '../ingredient-list/ingredient-list'
 import PropTypes from 'prop-types';
-
+import {ingredientPropType} from '../../utils/prop-types'
 const BurgerIngredients = ({data, openModal}) => { 
   const [current, setCurrent] = React.useState('bun')
   const buns = data.filter((ingredient) => ingredient.type === 'bun');
@@ -36,7 +36,7 @@ const BurgerIngredients = ({data, openModal}) => {
 }
 
 BurgerIngredients.propTypes = {
-  data: PropTypes.object.isRequired,
+  data: PropTypes.arrayOf(ingredientPropType.isRequired).isRequired,
   openModal: PropTypes.func.isRequired
 }
 

@@ -20,18 +20,18 @@ const Modal = ({handleClose, children}) => {
   })
 
   return ReactDOM.createPortal( (
-     <div>
+     <>
       <ModalOverlay closeModal={handleClose}/>
       <div className={styles.container}>
         <div className={styles.close}><CloseIcon onClick={handleClose}/></div>
         {children}
       </div>
-    </div>
+    </>
   ), modalRoot)
   }
 
   Modal.propTypes = {
     handleClose: PropTypes.func.isRequired,
-    children: PropTypes.object.isRequired
+    children: PropTypes.node.isRequired
 };
 export default Modal

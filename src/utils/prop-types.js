@@ -16,6 +16,6 @@ export const ingredientPropType = PropTypes.shape({
 });
 
 export const burgerConstPropTypes = {
-  data: PropTypes.arrayOf(ingredientPropType).isRequired,
+  data: PropTypes.arrayOf(ingredientPropType.isRequired).isRequired,
   openModal: PropTypes.func.isRequired,
 }

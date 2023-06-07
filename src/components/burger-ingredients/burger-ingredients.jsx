@@ -2,9 +2,10 @@ import styles from './burger-ingredients.module.css'
 import { Tab, } from '@ya.praktikum/react-developer-burger-ui-components'
 import React from 'react'
 import IngredientList from '../ingredient-list/ingredient-list'
-import { data } from "../../utils/data";
+import PropTypes from 'prop-types';
+import {ingredientPropType} from '../../utils/prop-types'
 
-const BurgerIngredients = () => { 
+const BurgerIngredients = ({data, openModal}) => { 
   const [current, setCurrent] = React.useState('bun')
   const buns = data.filter((ingredient) => ingredient.type === 'bun');
   const sauces = data.filter((ingredient) => ingredient.type === 'sauce');
@@ -25,14 +26,19 @@ const BurgerIngredients = () => {
       </div>
       <ul className={`${styles.scroll} custom-scroll`}>
           <h3 className="text text_type_main-medium mb-6">Булки</h3>
-          <IngredientList filter={buns} type="bun"/>
+          <IngredientList filter={buns} type="bun" openModal={openModal}/>
           <h3 className="text text_type_main-medium mt-10 mb-6">Соусы</h3>
-          <IngredientList filter={sauces} type="sauce"/>
+          <IngredientList filter={sauces} type="sauce" openModal={openModal}/>
           <h3 className="text text_type_main-medium mt-10 mb-6">Начинки</h3>
-          <IngredientList filter={mains} type="main"/>
+          <IngredientList filter={mains} type="main" openModal={openModal}/>
       </ul>
     </section>
   )
+}
+
+BurgerIngredients.propTypes = {
+  data: PropTypes.arrayOf(ingredientPropType.isRequired).isRequired,
+  openModal: PropTypes.func.isRequired
 }
 
 export default BurgerIngredients

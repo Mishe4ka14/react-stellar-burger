@@ -1,8 +1,8 @@
 import styles from './burger-constructor.module.css'
 import {ConstructorElement, DragIcon, Button, CurrencyIcon} from '@ya.praktikum/react-developer-burger-ui-components'
-import {data} from '../../utils/data'
+import { burgerConstPropTypes } from '../../utils/prop-types'
 
-const BurgerConstructor = () => {
+const BurgerConstructor = ({data, openModal}) => {
   return(
     <section className={styles.section}> 
       <div className='mr-4 mb-2 mt-2'>  
@@ -16,15 +16,12 @@ const BurgerConstructor = () => {
       </div>
       <ul className={`${styles.scroll} custom-scroll`}>
         {data.map((ingredient) => {
-          if (ingredient.__v === 1 ){   { /*условие нужно только для отображения некоторых ингредиентов пока нет запроса к API и взаимодействия с ингредиентами */} 
             return (
               <li className={styles.container} key={ingredient._id}>
                 <DragIcon type='primary'/>
                 <ConstructorElement text={ingredient.name} price={ingredient.price} thumbnail={ingredient.image}/>
               </li>
             );
-        }
-        return null;
         })}
       </ul>
       <div className='mr-4 mt-2'>
@@ -40,13 +37,18 @@ const BurgerConstructor = () => {
         <p className={`${styles.price} text text_type_main-large mr-3`}>610</p>
         <CurrencyIcon/>
         <div className={styles.btn}>
-          <Button htmlType="button" type="primary" size="large">
+          <Button htmlType="button" type="primary" size="large" onClick={() => openModal()}>
             Оформить заказ
           </Button>
         </div>
       </div>
     </section>
   )
+}
+
+BurgerConstructor.propTypes = {
+  data: burgerConstPropTypes.data,
+  openModal: burgerConstPropTypes.openModal
 }
 
 export default BurgerConstructor

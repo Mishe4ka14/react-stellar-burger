@@ -1,0 +1,23 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.box {
+  display: flex;
+  list-style-type: none;
+  gap: 40px;
+  margin-top: 32px;
+  margin-bottom: 60px;
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.number {
+  font-size: 22px;
+}

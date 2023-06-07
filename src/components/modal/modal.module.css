@@ -1,0 +1,16 @@
+.container {
+  box-sizing: border-box;
+  position: fixed;
+  top: 180px;
+  left: 28%;
+  background-color: #1C1C21;
+  width: 720px;
+  border-radius: 40px;
+}
+
+.close {
+  cursor: pointer;
+  position: relative;
+  top: 60px;
+  left: 650px;
+}

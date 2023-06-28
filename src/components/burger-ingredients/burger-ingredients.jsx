@@ -3,10 +3,12 @@ import { Tab, } from '@ya.praktikum/react-developer-burger-ui-components'
 import React from 'react'
 import IngredientList from '../ingredient-list/ingredient-list'
 import PropTypes from 'prop-types';
-import {ingredientPropType} from '../../utils/prop-types'
+import { ConstructorContext } from '../../services/constructor-context'
+import { useContext } from 'react'
 
-const BurgerIngredients = ({data, openModal}) => { 
+const BurgerIngredients = ({ openModal}) => { 
   const [current, setCurrent] = React.useState('bun')
+  const data = useContext(ConstructorContext)
   const buns = data.filter((ingredient) => ingredient.type === 'bun');
   const sauces = data.filter((ingredient) => ingredient.type === 'sauce');
   const mains = data.filter((ingredient) => ingredient.type === 'main');
@@ -37,7 +39,6 @@ const BurgerIngredients = ({data, openModal}) => {
 }
 
 BurgerIngredients.propTypes = {
-  data: PropTypes.arrayOf(ingredientPropType.isRequired).isRequired,
   openModal: PropTypes.func.isRequired
 }
 

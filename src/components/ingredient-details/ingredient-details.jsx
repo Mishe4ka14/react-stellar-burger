@@ -36,4 +36,4 @@ IngredientDetails.propTypes = {
  props:  ingredientPropType
 }
 
-export default IngredientDetails
+export default React.memo(IngredientDetails);

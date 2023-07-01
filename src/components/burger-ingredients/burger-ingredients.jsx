@@ -17,17 +17,20 @@ const BurgerIngredients = () => {
   const dispatch = useDispatch();
   
 
-  useEffect(() => {
-    const fetchData = async () => {
-      await dispatch(getIngredients());
-    };
-    fetchData();
-  }, []); 
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     await dispatch(getIngredients());
+  //   };
+  //   fetchData();
+  // }, []); 
 
+  React.useEffect(() => {
+    dispatch(getIngredients());
+}, [])
   
-  const {ingredients} = useSelector(store => store.ingredient)
+  const {ingredient} = useSelector(store => store.ingredient)
   const [current, setCurrent] = React.useState('bun')
-  const data = ingredients;
+  const data = ingredient;
   const buns = data.filter((ingredient) => ingredient.type === 'bun');
   const sauces = data.filter((ingredient) => ingredient.type === 'sauce');
   const mains = data.filter((ingredient) => ingredient.type === 'main');

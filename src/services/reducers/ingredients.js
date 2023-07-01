@@ -1,7 +1,4 @@
 import {
-  GET_CONSTRUCTOR_FAILED,
-  GET_CONSTRUCTOR_REQUEST,
-  GET_CONSTRUCTOR_SUCCESS,
   GET_INGREDIENTS_FAILED,
   GET_INGREDIENTS_REQUEST,
   GET_INGREDIENTS_SUCCESS,
@@ -9,10 +6,7 @@ import {
 
 
 const initialState = {
-  ingredients: [],
-  constructor: [],
-  currentIngredient: [],
-  order: [],
+  ingredient: [],
   ingredientsRequest: false,
   ingredientsFailed: false,
 }
@@ -24,9 +18,9 @@ export const ingredientsReducer = (store = initialState, action) => {
       return {...store, ingredientsRequest: true, itemsFailed: false}
     }
     case GET_INGREDIENTS_SUCCESS : {
-      return {...store, ingredientsRequest: false, itemsFailed: false, ingredients: action.data}
+      return {...store, ingredientsRequest: false, itemsFailed: false, ingredient: action.data}
     }
-    case GET_CONSTRUCTOR_FAILED : {
+    case GET_INGREDIENTS_FAILED : {
       return {...store, ingredientsRequest: false, itemsFailed: true}
     }
     default: {

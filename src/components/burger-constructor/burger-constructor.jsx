@@ -1,26 +1,19 @@
 import styles from './burger-constructor.module.css'
 import {ConstructorElement, DragIcon, Button, CurrencyIcon} from '@ya.praktikum/react-developer-burger-ui-components'
-import { ConstructorContext } from '../../services/constructor-context'
 import { useContext, useReducer, useEffect } from 'react'
 import { getOrderNumber } from '../../utils/burger-api'
 import { useState } from 'react'
 import Modal from '../modal/modal'
 import OrderModal from '../order-details/order-details'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
+
 
 const BurgerConstructor = () => {
+  const dispatch = useDispatch();
+  const { ingredient} = useSelector(store => store.ingredient)
 
-
-  const {ingredients} = useSelector(store => store.ingredient )
-  const [data, setData] = useState(null);
-
-  useEffect(() => {
-    if (ingredients) {
-      setData(ingredients);
-    }
-  }, [ingredients]);
-
-  //стейт окна заказа
+const bun = ingredient.find((item) => item.type === 'bun')
+  // стейт окна заказа
   const [modalOrder, setModalOrder] = useState(false);
   const [orderNumber, setOrderNumber] = useState(null);
   
@@ -40,60 +33,32 @@ const BurgerConstructor = () => {
     setIsButtonClicked(true);
   };
 
-  const bun = data.find((item) => item.type === 'bun');
-  const bunName = bun ? bun.name : '';
+  const [price, setPrice] = useState(0);
 
-  const initialState = {
-    count: 0,
-    ids: []
-  };
-
-//пишем редьюсер для подсчета суммы заказа и сразу собираем все id
-  function reducer(state, action){
-    const noBuns = data.filter((item) => item.type !== 'bun')
-    switch(action.type){
-      case 'change':
-        const totalPrice = (bun.price * 2) + noBuns.reduce((a, b) => a + b.price, 0);
-        const IDs = [bun._id, ...noBuns.map((item) => item._id)];
-        return { count: totalPrice, ids: IDs };
-      default:
-        return state;
+  useEffect(() => {
+    let totalPrice = 0;
+    ingredient.map(ingredient => (totalPrice += ingredient.price))
+    if (bun) {
+        totalPrice += (bun.price * 2)
     }
-  }
-  const [state, dispatch] = useReducer(reducer, initialState);
-  
-  //меняем сумму заказа при изменении данных
-  useEffect(() => {
-    dispatch({ type: 'change' });
-  }, [data]);
-  
-  const id = state.ids
-  const price = state.count; 
+    setPrice(totalPrice);
+}, [ingredient, bun])
 
-  // делаем запрос при нажатой кнопке
-  useEffect(() => {
-    const getNumber = async () => {
-      const res = await getOrderNumber(id);
-      const number = res.order.number;
-      setOrderNumber(number)
-    };
-    if (id.length > 0) {
-      getNumber();}
-    }, [isButtonClicked]);
-  
   return(
-    <section className={styles.section}> 
+    <section className={styles.section}>
+      {bun &&
       <div className='mr-4 mb-2 mt-2'>  
         <ConstructorElement 
           type="top"
           isLocked={true}
-          text={`${bunName.name} (верх)`} 
+          text={`${bun.name} (верх)`} 
           price={bun.price}
           thumbnail={bun.image}
         />
       </div>
+      } 
       <ul className={`${styles.scroll} custom-scroll`}>
-        {data.map((ingredient) => {
+        {ingredient.map((ingredient) => {
           if(ingredient.type !== 'bun'){
             return (
                <li className={styles.container} key={ingredient._id}>
@@ -104,15 +69,17 @@ const BurgerConstructor = () => {
             }  
         })}
       </ul>
+      {bun &&
       <div className='mr-4 mt-2'>
         <ConstructorElement
           type="bottom"
           isLocked={true}
-          text={`${bunName.name} (верх)`}
+          text={`${bun.name} (верх)`}
           price={bun.price}
           thumbnail={bun.image}
         />
       </div>
+      }
       <div className={styles.box}>
         <p className={`${styles.price} text text_type_main-large mr-3`}>{price}</p>
         <CurrencyIcon/>

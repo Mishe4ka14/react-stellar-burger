@@ -6,8 +6,20 @@ import { getOrderNumber } from '../../utils/burger-api'
 import { useState } from 'react'
 import Modal from '../modal/modal'
 import OrderModal from '../order-details/order-details'
+import { useSelector } from 'react-redux'
 
 const BurgerConstructor = () => {
+
+
+  const {ingredients} = useSelector(store => store.ingredient )
+  const [data, setData] = useState(null);
+
+  useEffect(() => {
+    if (ingredients) {
+      setData(ingredients);
+    }
+  }, [ingredients]);
+
   //стейт окна заказа
   const [modalOrder, setModalOrder] = useState(false);
   const [orderNumber, setOrderNumber] = useState(null);
@@ -28,9 +40,9 @@ const BurgerConstructor = () => {
     setIsButtonClicked(true);
   };
 
-  const data = useContext(ConstructorContext)
   const bun = data.find((item) => item.type === 'bun');
-  
+  const bunName = bun ? bun.name : '';
+
   const initialState = {
     count: 0,
     ids: []
@@ -68,14 +80,14 @@ const BurgerConstructor = () => {
     if (id.length > 0) {
       getNumber();}
     }, [isButtonClicked]);
-
+  
   return(
     <section className={styles.section}> 
       <div className='mr-4 mb-2 mt-2'>  
         <ConstructorElement 
           type="top"
           isLocked={true}
-          text={`${bun.name} (верх)`} 
+          text={`${bunName.name} (верх)`} 
           price={bun.price}
           thumbnail={bun.image}
         />
@@ -96,7 +108,7 @@ const BurgerConstructor = () => {
         <ConstructorElement
           type="bottom"
           isLocked={true}
-          text={`${bun.name} (верх)`}
+          text={`${bunName.name} (верх)`}
           price={bun.price}
           thumbnail={bun.image}
         />

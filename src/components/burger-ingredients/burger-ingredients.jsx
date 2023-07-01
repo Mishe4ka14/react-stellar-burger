@@ -4,11 +4,30 @@ import React from 'react'
 import IngredientList from '../ingredient-list/ingredient-list'
 import PropTypes from 'prop-types';
 import { ConstructorContext } from '../../services/constructor-context'
-import { useContext } from 'react'
+import { useContext, useEffect } from 'react'
+import { useState } from 'react';
+import { getIngredients } from '../../services/actions/ingredients';
+import { useDispatch, useSelector } from 'react-redux';
+import { MODAL_INGREDIENT, openIngredientModal } from '../../services/actions/modal';
+import Modal from '../modal/modal';
+import IngredientDetails from '../ingredient-details/ingredient-details';
 
-const BurgerIngredients = ({ openModal}) => { 
+const BurgerIngredients = () => { 
+
+  const dispatch = useDispatch();
+  
+
+  useEffect(() => {
+    const fetchData = async () => {
+      await dispatch(getIngredients());
+    };
+    fetchData();
+  }, []); 
+
+  
+  const {ingredients} = useSelector(store => store.ingredient)
   const [current, setCurrent] = React.useState('bun')
-  const data = useContext(ConstructorContext)
+  const data = ingredients;
   const buns = data.filter((ingredient) => ingredient.type === 'bun');
   const sauces = data.filter((ingredient) => ingredient.type === 'sauce');
   const mains = data.filter((ingredient) => ingredient.type === 'main');
@@ -28,18 +47,15 @@ const BurgerIngredients = ({ openModal}) => {
       </div>
       <ul className={`${styles.scroll} custom-scroll`}>
           <h3 className="text text_type_main-medium mb-6">Булки</h3>
-          <IngredientList filter={buns} type="bun" openModal={openModal}/>
+          <IngredientList filter={buns} type="bun"/>
           <h3 className="text text_type_main-medium mt-10 mb-6">Соусы</h3>
-          <IngredientList filter={sauces} type="sauce" openModal={openModal}/>
+          <IngredientList filter={sauces} type="sauce"/>
           <h3 className="text text_type_main-medium mt-10 mb-6">Начинки</h3>
-          <IngredientList filter={mains} type="main" openModal={openModal}/>
+          <IngredientList filter={mains} type="main"/>
       </ul>
     </section>
   )
 }
 
-BurgerIngredients.propTypes = {
-  openModal: PropTypes.func.isRequired
-}
 
 export default BurgerIngredients

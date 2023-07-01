@@ -1,8 +1,14 @@
 import React from 'react'
 import styles from './ingredient-details.module.css'
 import { ingredientPropType } from '../../utils/prop-types';
+import { useSelector } from 'react-redux';
+import { getModalState } from '../../services/reducers/modal';
 
-const IngredientDetails = ({props}) => {
+const IngredientDetails = () => {
+
+  const { modalProps } = useSelector(getModalState)
+  const props = modalProps
+
   return(
     <>
     <h2 className="text text_type_main-large mt-5 ml-10">Детали ингредиента</h2>
@@ -32,8 +38,6 @@ const IngredientDetails = ({props}) => {
   )
 }
 
-IngredientDetails.propTypes = {
- props:  ingredientPropType
-}
 
-export default React.memo(IngredientDetails);
+
+export default IngredientDetails

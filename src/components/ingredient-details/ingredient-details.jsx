@@ -2,11 +2,10 @@ import React from 'react'
 import styles from './ingredient-details.module.css'
 import { ingredientPropType } from '../../utils/prop-types';
 import { useSelector } from 'react-redux';
-import { getModalState } from '../../services/reducers/modal';
 
 const IngredientDetails = () => {
 
-  const { modalProps } = useSelector(getModalState)
+  const { modalProps } = useSelector(store => store.modal)
   const props = modalProps
 
   return(

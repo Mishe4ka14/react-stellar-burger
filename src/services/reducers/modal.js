@@ -4,8 +4,6 @@ const initialState = {
   modalType: null,
   modalProps: {}
 }
-
-export const getModalState = (state) => state.modal;
   
 export const modalReducer = (store = initialState, action) => {
     switch (action.type) {

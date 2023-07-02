@@ -8,25 +8,15 @@ import { useContext, useEffect } from 'react'
 import { useState } from 'react';
 import { getIngredients } from '../../services/actions/ingredients';
 import { useDispatch, useSelector } from 'react-redux';
-import { MODAL_INGREDIENT, openIngredientModal } from '../../services/actions/modal';
-import Modal from '../modal/modal';
-import IngredientDetails from '../ingredient-details/ingredient-details';
+
 
 const BurgerIngredients = () => { 
 
   const dispatch = useDispatch();
   
-
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     await dispatch(getIngredients());
-  //   };
-  //   fetchData();
-  // }, []); 
-
-  React.useEffect(() => {
+  useEffect(() => {
     dispatch(getIngredients());
-}, [])
+  }, [])
   
   const {ingredient} = useSelector(store => store.ingredient)
   const [current, setCurrent] = React.useState('bun')

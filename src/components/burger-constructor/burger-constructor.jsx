@@ -1,37 +1,29 @@
 import styles from './burger-constructor.module.css'
 import {ConstructorElement, DragIcon, Button, CurrencyIcon} from '@ya.praktikum/react-developer-burger-ui-components'
 import { useContext, useReducer, useEffect } from 'react'
-import { getOrderNumber } from '../../utils/burger-api'
+import { getOrder } from '../../services/actions/constructor'
 import { useState } from 'react'
 import Modal from '../modal/modal'
 import OrderModal from '../order-details/order-details'
 import { useSelector, useDispatch } from 'react-redux'
+import { MODAL_ORDER } from '../../services/actions/modal'
 
 
 const BurgerConstructor = () => {
   const dispatch = useDispatch();
-  const { ingredient} = useSelector(store => store.ingredient)
+  const {ingredient} = useSelector(store => store.ingredient)
+  const { modalType } = useSelector(store => store.modal)
 
-const bun = ingredient.find((item) => item.type === 'bun')
-  // стейт окна заказа
-  const [modalOrder, setModalOrder] = useState(false);
-  const [orderNumber, setOrderNumber] = useState(null);
-  
-  const openModalOrder = () => {
-    setModalOrder(true)
+  const bun = ingredient.find((item) => item.type === 'bun')
+
+    const submitOrder = () => {
+    const bun = ingredient.find((item) => item.type === 'bun');
+    const noBuns = ingredient.filter((item) => item.type !== 'bun')
+    const IDs = [bun._id, ...noBuns.map((item) => item._id)];
+    if(IDs.length > 0) {
+      dispatch(getOrder(IDs))
+    }
   }
-  
-  const closeModalOrder = () => {
-    setModalOrder(false)
-  }
-
-  //стейт нажатой кнопки
-  const [isButtonClicked, setIsButtonClicked] = useState(false);
-
-  const handleClickButton = () => {
-    openModalOrder();
-    setIsButtonClicked(true);
-  };
 
   const [price, setPrice] = useState(0);
 
@@ -42,7 +34,7 @@ const bun = ingredient.find((item) => item.type === 'bun')
         totalPrice += (bun.price * 2)
     }
     setPrice(totalPrice);
-}, [ingredient, bun])
+    }, [ingredient, bun])
 
   return(
     <section className={styles.section}>
@@ -84,14 +76,16 @@ const bun = ingredient.find((item) => item.type === 'bun')
         <p className={`${styles.price} text text_type_main-large mr-3`}>{price}</p>
         <CurrencyIcon/>
         <div className={styles.btn}>
-          <Button htmlType="button" type="primary" size="large" onClick={handleClickButton}>
+          <Button htmlType="button" type="primary" size="large" onClick={submitOrder}>
             Оформить заказ
           </Button>
         </div>
       </div>
-      {modalOrder && <Modal handleClose={closeModalOrder} >
-        <OrderModal number={orderNumber}/>
-      </Modal>}
+      { modalType === MODAL_ORDER &&
+                <Modal>
+                    <OrderModal />
+                </Modal>
+            }  
     </section>
   )
 }

@@ -6,12 +6,11 @@ import { useDispatch, useSelector } from "react-redux";
 import {MODAL_INGREDIENT, openIngredientModal } from "../../services/actions/modal";
 import IngredientDetails from "../ingredient-details/ingredient-details";
 import Modal from "../modal/modal";
-import { getModalState } from "../../services/reducers/modal";
 
 const IngredientList = ({ filter }) => {
 
   const dispatch = useDispatch();
-  const {modalType} = useSelector(getModalState)
+  const {modalType} = useSelector(store => store.modal)
   return (
     <div className={styles.box}>
       {filter.map((ingredient) => (

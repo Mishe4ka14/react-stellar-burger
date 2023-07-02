@@ -28,9 +28,9 @@ const Modal = ({children}) => {
 
   return ReactDOM.createPortal( (
      <>
-      <ModalOverlay closeModal={(() => closeModal())}/>
+      <ModalOverlay closeModal={(() => dispatch(closeModal()))}/>
       <div className={styles.container}>
-        <div className={styles.close}><CloseIcon onClick={(() => closeModal())}/></div>
+        <div className={styles.close}><CloseIcon onClick={(() => dispatch(closeModal()))}/></div>
         {children}
       </div>
     </>

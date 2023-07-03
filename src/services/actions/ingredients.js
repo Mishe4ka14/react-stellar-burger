@@ -5,23 +5,33 @@ export const GET_INGREDIENTS_SUCCESS = 'GET_INGREDIENTS_SUCCESS';
 export const GET_INGREDIENTS_FAILED = 'GET_INGREDIENTS_FAILED';
 
 
-
 export const getIngredients = () => {
-  return function(dispatch){
-      dispatch({
-        type: GET_INGREDIENTS_REQUEST
-      });
-      getIngredientsRequest().then(res => {
+  return function (dispatch) {
+    dispatch({
+      type: GET_INGREDIENTS_REQUEST,
+    });
+    getIngredientsRequest()
+      .then((res) => {
         if (res && res.success) {
-          dispatch({
-            type: GET_INGREDIENTS_SUCCESS,
-            data: res.data
-          });
+          dispatch(ingredientsSuccess(res.data));
         } else {
           dispatch({
-            type: GET_INGREDIENTS_FAILED
+            type: GET_INGREDIENTS_FAILED,
           });
         }
+      })
+      .catch((error) => {
+        dispatch({
+          type: GET_INGREDIENTS_FAILED,
+          payload: error.message,
+        });
       });
-  }
-}
+  };
+};
+
+const ingredientsSuccess = (data) => {
+  return {
+    type: GET_INGREDIENTS_SUCCESS,
+    ingredient: data,
+  };
+};

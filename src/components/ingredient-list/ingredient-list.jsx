@@ -15,7 +15,7 @@ const IngredientList = ({ filter }) => {
     <div className={styles.box}>
       {filter.map((ingredient) => (
         <div key={ingredient._id} className={styles.container} onClick={() => dispatch(openIngredientModal(ingredient))}>
-          <Ingredient  ingredient={ingredient} onClick={() => dispatch(openIngredientModal(ingredient))} />
+          <Ingredient  ing={ingredient} onClick={() => dispatch(openIngredientModal(ingredient))} />
         </div>
       ))}
         { modalType === MODAL_INGREDIENT && 

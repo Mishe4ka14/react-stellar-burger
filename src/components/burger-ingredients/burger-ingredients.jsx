@@ -14,7 +14,9 @@ const BurgerIngredients = () => {
     dispatch(getIngredients());
   }, [])
   
+
   const {ingredient} = useSelector(store => store.ingredient)
+  
   const data = ingredient;
   const buns = data.filter((ingredient) => ingredient.type === 'bun');
   const sauces = data.filter((ingredient) => ingredient.type === 'sauce');
@@ -23,25 +25,29 @@ const BurgerIngredients = () => {
   const [activeTab, setActiveTab] = React.useState('bun');
 
     useEffect(() => {
+      //обработчик события прокрутки
       const handleScroll = () => {
         const sections = ['.bun', '.sauce', '.main'];
-    
+
+        //вычисляем расстояние до каждой секции
         const distances = sections.map((section) => {
           const element = document.querySelector(section);
           const distance = Math.abs(element.getBoundingClientRect().top - 90);
           return { section, distance };
         });
-    
+        
+        //находим блмжайшую секцию
         const closestSection = distances.reduce((closest, current) =>
           current.distance < closest.distance ? current : closest
         );
-    
+        
+        //устанавливаем активную ближайшую секцию
         setActiveTab(closestSection.section.slice(1));
       };
     
       const scrollWrapper = document.querySelector('.custom-scroll');
       scrollWrapper.addEventListener('scroll', handleScroll, { passive: true });
-    
+
       return () => {
         scrollWrapper.removeEventListener('scroll', handleScroll);
       };

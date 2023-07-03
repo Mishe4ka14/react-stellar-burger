@@ -2,10 +2,7 @@ import { getOrderNumber } from "../../utils/burger-api";
 import { openOrderModal } from "./modal";
 
 export const GET_CONSTRUCTOR_REQUEST = 'GET_CONSTRUCTOR_REQUEST';
-export const GET_CONSTRUCTOR_SUCCESS = {
-                                        type: 'GET_CONSTRUCTOR_SUCCESS',
-                                        order: null
-                                        };
+export const GET_CONSTRUCTOR_SUCCESS = 'GET_CONSTRUCTOR_SUCCESS';
 export const GET_CONSTRUCTOR_FAILED = 'GET_CONSTRUCTOR_FAILED';
 export const ADD_INGREDIENT = 'ADD_INGREDIENT';
 export const REMOVE_INGREDIENT = 'REMOVE_INGREDIENT';

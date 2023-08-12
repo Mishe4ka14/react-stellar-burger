@@ -12,7 +12,9 @@ import { Routes } from 'react-router';
 import HomePage from "./pages/home-page/home-page";
 import { RegistrationPage } from "./pages/registration-page/registration-page";
 import { LoginPage } from "./pages/login-page/login-page";
-
+import { ForgotPassword } from "./pages/forgot-password/forgot-password";
+import { ResetPassword } from "./pages/reset-password/reset-password";
+import { ProfilePage } from "./pages/profile-page/profile-page";
 const composeEnhancers =
 typeof window === 'object' && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
 ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({})
@@ -26,10 +28,9 @@ const store = createStore(rootReducer, enhancer)
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
-  <BrowserRouter>
+      <BrowserRouter>
         <App/>
-  </BrowserRouter>
-  
+      </BrowserRouter>
     </Provider>
   </React.StrictMode>,
   document.getElementById("root")

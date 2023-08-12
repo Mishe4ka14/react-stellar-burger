@@ -16,10 +16,10 @@ const AppHeader = () => {
       <div className={styles.logo}>
         <Logo/>
       </div>
-      <a href='#' className={styles.link}>
+      <Link to='/profile' className={styles.link}>
         <ProfileIcon type="secondary"/>
         <p className='text text_type_main-default text_color_inactive mr-5 ml-2'>Личный кабинет</p>
-      </a>
+      </Link>
     </header>
   )
 }

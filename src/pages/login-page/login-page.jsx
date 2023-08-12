@@ -17,15 +17,15 @@ export function LoginPage() {
         <Input type={'password'} extraClass='mt-4 mb-4' placeholder={'Пароль'} icon={'ShowIcon'} value={inputValues.email}
         onChange={handleInputChange}
         name="email"/>
-        <Button htmlType="button" extraClass='mt-4 mb-20'>Войти</Button>
+        <Link to='/'>
+          <Button htmlType="button" extraClass='mt-4 mb-20'>Войти</Button>
+        </Link>
         <div className={styles.box}>
           <h2 className="text text_type_main-small text_color_inactive">Вы - новый пользователь?</h2>
-          <Link to="/register">
-            <Button htmlType="button" type="secondary" size="small">Зарегестрироваться</Button>
-          </Link>
+          <Button htmlType="button" type="secondary" size="small">Зарегистрироваться</Button>
         </div>
         <div className={styles.box}>
-          <h2 className="text text_type_main-small text_color_inactive">Заьыли пароль?</h2>
+          <h2 className="text text_type_main-small text_color_inactive">Забыли пароль?</h2>
           <Button htmlType="button" type="secondary" size="small">Восстановить пароль</Button>
         </div>
       </div>

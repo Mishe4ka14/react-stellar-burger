@@ -22,11 +22,15 @@ export function LoginPage() {
         </Link>
         <div className={styles.box}>
           <h2 className="text text_type_main-small text_color_inactive">Вы - новый пользователь?</h2>
-          <Button htmlType="button" type="secondary" size="small">Зарегистрироваться</Button>
+          <Link to='/register'>
+            <Button htmlType="button" type="secondary" size="small">Зарегистрироваться</Button>
+          </Link>
         </div>
         <div className={styles.box}>
-          <h2 className="text text_type_main-small text_color_inactive">Забыли пароль?</h2>
-          <Button htmlType="button" type="secondary" size="small">Восстановить пароль</Button>
+            <h2 className="text text_type_main-small text_color_inactive">Забыли пароль?</h2>
+          <Link to='/forgot-password'>
+            <Button htmlType="button" type="secondary" size="small">Восстановить пароль</Button>
+          </Link>
         </div>
       </div>
     </>

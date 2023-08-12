@@ -5,8 +5,12 @@ import { ingredientPropType } from '../../utils/prop-types';
 import { useDrag } from 'react-dnd';
 import { useState, useEffect } from 'react';
 import { useSelector, } from 'react-redux';
+import { useLocation, Link } from 'react-router-dom';
 
 const Ingredient = ({ing, onClick}) => {
+
+  const location = useLocation();
+
   const {image, price, name} = ing;
 
   const [, dragRef] = useDrag({
@@ -19,10 +23,6 @@ const Ingredient = ({ing, onClick}) => {
 });
 
 const {constructor, bun} = useSelector(store => store.ingredient)
-// console.log(constructor)
-
-// const bun = constructor.find((item) => item.type === 'bun');
-// const noBuns = constructor.filter((item) => item.type !== 'bun')
 
 const [counterR, setCounter] = useState(0);
 
@@ -36,16 +36,27 @@ useEffect(() => {
   setCounter(counter)
 }, [ bun, constructor])
 
+
   return(
-    <div className={`${styles.box}`} onClick={onClick} ref={dragRef}>
-        {counterR > 0 &&  <Counter count={counterR} />}
-      <img src={image} alt={name} />
-      <div className={styles.container}>
-        <p className={`${styles.price} text text_type_main-default mr-2 pt-1 pb-1`}>{price}</p>
-        <CurrencyIcon/>
+    <Link
+    key={ing._id}
+    // Тут мы формируем динамический путь для нашего ингредиента
+    to={`/ingredients/${ing._id}`}
+    // а также сохраняем в свойство background роут,
+    // на котором была открыта наша модалка
+    state={{ background: location }}
+    className={styles.link}
+  >
+      <div className={`${styles.box}`} onClick={onClick} ref={dragRef}>
+          {counterR > 0 &&  <Counter count={counterR} />}
+        <img src={image} alt={name} />
+        <div className={styles.container}>
+          <p className={`${styles.price} text text_type_main-default mr-2 pt-1 pb-1`}>{price}</p>
+          <CurrencyIcon/>
+        </div>
+        <p className="text text_type_main-default">{name}</p>
       </div>
-      <p className="text text_type_main-default">{name}</p>
-    </div>
+    </Link>
   )
 }
 

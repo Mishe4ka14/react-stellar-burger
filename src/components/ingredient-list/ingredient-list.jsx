@@ -18,11 +18,6 @@ const IngredientList = ({ filter }) => {
           <Ingredient  ing={ingredient} onClick={() => dispatch(openIngredientModal(ingredient))} />
         </div>
       ))}
-        { modalType === MODAL_INGREDIENT && 
-                <Modal> 
-                    <IngredientDetails/>
-                </Modal> 
-            }
     </div>
   );
 };

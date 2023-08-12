@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react'
+import {useEffect} from 'react'
 import ReactDOM from 'react-dom';
 import styles from './modal.module.css'
 import {CloseIcon} from '@ya.praktikum/react-developer-burger-ui-components'
@@ -9,13 +9,18 @@ import { closeModal } from '../../services/actions/modal';
 
 const modalRoot = document.getElementById('modal-root')
 
-const Modal = ({children}) => {
+const Modal = ({children, onClose}) => {
 
   const dispatch = useDispatch();
 
+const handlerClose = () => {
+  dispatch(closeModal())
+  onClose()
+}
+
   const escClose = (e) => {
     if (e.key === "Escape") {
-      dispatch(closeModal())
+        handlerClose()
       }
     }
 
@@ -28,9 +33,9 @@ const Modal = ({children}) => {
 
   return ReactDOM.createPortal( (
      <>
-      <ModalOverlay closeModal={(() => dispatch(closeModal()))}/>
+      <ModalOverlay closeModal={(() => handlerClose())}/>
       <div className={styles.container}>
-        <div className={styles.close}><CloseIcon onClick={(() => dispatch(closeModal()))}/></div>
+        <div className={styles.close}><CloseIcon onClick={(() => handlerClose())}/></div>
         {children}
       </div>
     </>

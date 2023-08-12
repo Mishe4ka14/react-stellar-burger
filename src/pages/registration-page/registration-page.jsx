@@ -3,9 +3,18 @@ import AppHeader from '../../components/app-header/app-header'
 import { Button, Input } from "@ya.praktikum/react-developer-burger-ui-components";
 import { useInputHandlers } from '../../utils/use-input';
 import { Link } from 'react-router-dom';
+import { registerRequest } from '../../services/actions/auth';
+import { useDispatch } from 'react-redux';
 
 export function RegistrationPage() {
+  const dispatch = useDispatch();
   const [inputValues, handleInputChange] = useInputHandlers();
+
+  const handleClick = () => {
+    const { email, name, password } = inputValues;
+    dispatch(registerRequest(email, name, password))
+  }
+
   return (
     <>
       <AppHeader/>
@@ -20,9 +29,9 @@ export function RegistrationPage() {
         <Input type={'password'} extraClass='mt-4 mb-4' placeholder={'Пароль'} icon={'ShowIcon'}  value={inputValues.password}
         onChange={handleInputChange}
         name="password"/>
-        <Button htmlType="button" extraClass='mt-4'>Зарегестрироваться</Button>
+        <Button htmlType="button" extraClass='mt-4'onClick={handleClick} >Зарегистрироваться</Button>
         <div className={styles.box}>
-          <h2 className="text text_type_main-small text_color_inactive">Уже зарегестрированы?</h2>
+          <h2 className="text text_type_main-small text_color_inactive">Уже зарегистрированы?</h2>
           <Link to='/login'>
             <Button htmlType="button" type="secondary" size="small">Войти</Button>
           </Link>

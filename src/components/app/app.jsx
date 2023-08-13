@@ -12,6 +12,8 @@ import {React, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { getIngredients } from '../../services/actions/ingredients';
 import AppHeader from '../app-header/app-header';
+import { OnlyAuth, OnlyUnAuth } from '../protected-route/protected-route';
+import { checkUserAuth } from '../../services/actions/auth';
 
 function App() {
 
@@ -24,16 +26,19 @@ function App() {
     navigate(-1);
   };
 
+  useEffect(() => {
+    dispatch(checkUserAuth());
+  }, [])
 
   return (
     <>
       <Routes location={background || location}>
-        <Route exact path="/" element={<HomePage />}/>
-        <Route path="/login" element={<LoginPage/>}/>
-        <Route path="/register" element={<RegistrationPage/>}/>
-        <Route path="/forgot-password" element={<ForgotPassword/>}/>
-        <Route path="/reset-password" element={<ResetPassword/>}/>
-        <Route path="/profile" element={<ProfilePage/>}/>
+        <Route exact path="/" element={<HomePage />} />
+        <Route path="/login"  element={<OnlyUnAuth component={<LoginPage />} />} />
+        <Route path="/register" element={<OnlyUnAuth component={<RegistrationPage />} />}/>
+        <Route path="/forgot-password" element={<OnlyUnAuth component={<ForgotPassword />} />}/>
+        <Route path="/reset-password" element={<OnlyUnAuth component={<ResetPassword />} />}/>
+        <Route path="/profile" element={<OnlyUnAuth component={<ProfilePage />} />}/>
         <Route path='/ingredients/:ingredientId'
                element={<IngredientDetails />} />
       </Routes>

@@ -34,12 +34,14 @@ export const registerUser = async (email, name, password) => {
       "name": name
     }),
   })
-  .then(checkResponse);
+  const res_1 = await checkResponse(res);
+  localStorage.setItem('accessToken', res_1.accessToken);
+  localStorage.setItem('refreshToken', res_1.refreshToken);
 }
 
 //запрос на авторизацию
 export const loginUser = async (email, password) => {
-  return await fetch(`${NORMA_API}/auth/login`, {
+  const res = await fetch(`${NORMA_API}/auth/login`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json;charset=utf-8",
@@ -49,7 +51,9 @@ export const loginUser = async (email, password) => {
       "password": password,
     }),
   })
-  .then(checkResponse)
+  const res_1 = await checkResponse(res);
+  localStorage.setItem('accessToken', res_1.accessToken);
+  localStorage.setItem('refreshToken', res_1.refreshToken);
 }
 
 //запрос на выход
@@ -63,6 +67,13 @@ export const logOutUser = async (token) => {
       "token": token
     }),
   });
+}
+
+//запрос на получание данные пользователя
+
+export const getUserInfo = () => {
+  return fetchWithRefresh(`${NORMA_API}auth/user`)
+  .then(checkResponse)
 }
 
 //запрос на обновление токена

@@ -1,4 +1,4 @@
-import { LOGIN_REQUEST, LOGIN_FAILED, LOGIN_SUCCESS, REGISTER_FAILED, REGISTER_SUCCESS, REGISTER_REQUEST, LOGOUT_FAILED, LOGOUT_REQUEST, LOGOUT_SUCCESS } from "../actions/auth"
+import { LOGIN_REQUEST, LOGIN_FAILED, LOGIN_SUCCESS, REGISTER_FAILED, REGISTER_SUCCESS, REGISTER_REQUEST, LOGOUT_FAILED, LOGOUT_REQUEST, LOGOUT_SUCCESS, SET_AUTH_CHECKED, SET_USER } from "../actions/auth"
 
 const initialState = {
     user: null,
@@ -8,37 +8,45 @@ const initialState = {
     loginFailed: false,
     logoutRequest: false,
     logoutFailed: false,
+    isAuthChecked: false,
 }
 
-export const authReducer = (state = initialState, action) => {
+export const authReducer = (store = initialState, action) => {
   switch (action.type) {
     case REGISTER_REQUEST: return {
-      ...state, registerRequest: true, registerFailed: false
+      ...store, registerRequest: true, registerFailed: false
     };
     case REGISTER_SUCCESS: return {
-      ...state, registerRequest: false, registerFailed: false, user: action.payload.user
+      ...store, registerRequest: false, registerFailed: false, user: action.payload.user
     };
     case REGISTER_FAILED: return {
-      ...state, registerRequest: false, registerFailed: true 
+      ...store, registerRequest: false, registerFailed: true 
     };
     case LOGIN_REQUEST: return {
-       ...state, loginRequest: true, loginFailed: false 
+       ...store, loginRequest: true, loginFailed: false 
     };
     case LOGIN_SUCCESS: return {
-       ...state, loginRequest: false, user: action.payload.user 
+       ...store, loginRequest: false, user: action.payload.user 
     };
     case LOGIN_FAILED: return {
-       ...state, loginRequest: false, loginFailed: true 
+       ...store, loginRequest: false, loginFailed: true 
     };
     case LOGOUT_REQUEST: return {
-       ...state, logoutRequest: true, logoutFailed: false 
+       ...store, logoutRequest: true, logoutFailed: false 
     };
     case LOGOUT_SUCCESS: return {
-       ...state, logoutRequest: false, user: null 
+       ...store, logoutRequest: false, user: null 
     };
     case LOGOUT_FAILED: return {
-       ...state, logoutRequest: false, logoutFailed: true
+       ...store, logoutRequest: false, logoutFailed: true
     };
-    default: return state;
+    case SET_AUTH_CHECKED: return {
+      ...store, isAuthChecked: action.payload
+    }
+    case SET_USER:
+      return {
+        ...store, user: action.payload
+      }
+    default: return store;
   }
 };

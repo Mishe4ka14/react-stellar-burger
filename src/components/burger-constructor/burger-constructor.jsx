@@ -47,6 +47,9 @@ const BurgerConstructor = () => {
     dispatch(changeIngedients(dragIndex, hoverIndex));
   }, []);
 
+  // localStorage.removeItem('accessToken');
+  const username = localStorage.getItem('accessToken');
+console.log(username); // "john_doe"
   return (
     <section className={styles.section} ref={dropTarget}>
       {bun && (

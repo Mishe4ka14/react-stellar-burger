@@ -45,11 +45,11 @@ export const logoutRequest = (token) => {
     dispatch({ type: LOGOUT_REQUEST });
 
     try {
-      await logOutUser(token);
-
+      await logOutUser(token)
+      .then(() => {
       localStorage.removeItem('accessToken');
       localStorage.removeItem('refreshToken');
-
+    })
       dispatch({ type: LOGOUT_SUCCESS });
     } catch (error) {
       dispatch({ type: LOGOUT_FAILED, payload: error.message });

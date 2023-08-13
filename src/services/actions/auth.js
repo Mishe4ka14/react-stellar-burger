@@ -15,12 +15,15 @@ export const SET_USER = 'SET_USER'
 export const SET_AUTH_CHECKED = 'SET_AUTH_CHECKED'
 
 export const registerRequest = (email, password, name) => {
-  return async function (dispatch) {
+  return (dispatch) => {
     dispatch({ type: REGISTER_REQUEST });
-
     try {
-      const response = await registerUser(email, name, password);
-      dispatch({ type: REGISTER_SUCCESS, payload: response });
+      return registerUser(email, name, password)
+      .then((response) => {
+        localStorage.setItem('accessToken', response.accessToken);
+        localStorage.setItem('refreshToken', response.refreshToken);
+        dispatch({ type: REGISTER_SUCCESS, payload: response });
+      })
     } catch (error) {
       dispatch({ type: REGISTER_FAILED, payload: error.message });
     }
@@ -28,12 +31,15 @@ export const registerRequest = (email, password, name) => {
 }
 
 export const loginRequest = (email, password) => {
-  return async function (dispatch) {
+  return async (dispatch) => {
     dispatch({ type: LOGIN_REQUEST });
-
     try {
       const response = await loginUser(email, password);
+      localStorage.setItem('accessToken', response.accessToken);
+      localStorage.setItem('refreshToken', response.refreshToken);
       dispatch({ type: LOGIN_SUCCESS, payload: response });
+      dispatch(setUser(response.user));
+      dispatch(setAuthChecked(true));
     } catch (error) {
       dispatch({ type: LOGIN_FAILED, payload: error.message });
     }

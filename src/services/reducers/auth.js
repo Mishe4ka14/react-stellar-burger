@@ -26,7 +26,7 @@ export const authReducer = (store = initialState, action) => {
        ...store, loginRequest: true, loginFailed: false 
     };
     case LOGIN_SUCCESS: return {
-       ...store, loginRequest: false, user: action.payload.user 
+       ...store, loginRequest: false, loginFailed: false, user: action.payload.user 
     };
     case LOGIN_FAILED: return {
        ...store, loginRequest: false, loginFailed: true 

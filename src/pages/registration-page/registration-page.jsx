@@ -7,7 +7,6 @@ import { registerRequest } from '../../services/actions/auth';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import { useHistory } from 'react-router-dom';
 
 export function RegistrationPage() {
   const dispatch = useDispatch();
@@ -16,7 +15,8 @@ export function RegistrationPage() {
 
   const [inputValues, handleInputChange] = useInputHandlers();
 
-  const handleClick = () => {
+  const handleClick = (e) => {
+    e.preventDefault();
     const { email, name, password } = inputValues;
     dispatch(registerRequest(email, name, password))
     if (!store.auth.registerFailed) {
@@ -29,13 +29,13 @@ export function RegistrationPage() {
       <AppHeader/>
       <div className={styles.container}>
         <h1 className="text text_type_main-medium">Регистрация</h1>
-        <Input type={'text'} extraClass='mt-4 mb-4' placeholder={'Имя'}     value={inputValues.name}
+        <Input type={'text'} extraClass='mt-4 mb-4' placeholder={'Имя'} value={inputValues.name}
         onChange={handleInputChange}
         name="name"/>
-        <Input type={'email'} extraClass='mt-4 mb-4' placeholder={'E-mail'}     value={inputValues.email}
+        <Input type={'email'} extraClass='mt-4 mb-4' placeholder={'E-mail'} value={inputValues.email}
         onChange={handleInputChange}
         name="email"/>
-        <Input type={'password'} extraClass='mt-4 mb-4' placeholder={'Пароль'} icon={'ShowIcon'}  value={inputValues.password}
+        <Input type={'password'} extraClass='mt-4 mb-4' placeholder={'Пароль'} icon={'ShowIcon'} value={inputValues.password}
         onChange={handleInputChange}
         name="password"/>
         <Button htmlType="button" extraClass='mt-4'onClick={handleClick} >Зарегистрироваться</Button>

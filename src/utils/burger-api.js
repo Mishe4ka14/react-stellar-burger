@@ -23,7 +23,7 @@ export function getOrderNumber(ID) {
 
 //запрос на регистрацию 
 export const registerUser = async (email, name, password) => {
-  const res = await fetch(`${NORMA_API}/auth/register`, {
+  return fetch(`${NORMA_API}/auth/register`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json;charset=utf-8",
@@ -33,15 +33,13 @@ export const registerUser = async (email, name, password) => {
       "password": password,
       "name": name
     }),
-  })
-  const res_1 = await checkResponse(res);
-  localStorage.setItem('accessToken', res_1.accessToken);
-  localStorage.setItem('refreshToken', res_1.refreshToken);
+  }).then(checkResponse)
 }
 
 //запрос на авторизацию
 export const loginUser = async (email, password) => {
-  const res = await fetch(`${NORMA_API}/auth/login`, {
+  console.log(email, password)
+  return fetch(`${NORMA_API}/auth/login`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json;charset=utf-8",
@@ -50,10 +48,7 @@ export const loginUser = async (email, password) => {
       "email": email,
       "password": password,
     }),
-  })
-  const res_1 = await checkResponse(res);
-  localStorage.setItem('accessToken', res_1.accessToken);
-  localStorage.setItem('refreshToken', res_1.refreshToken);
+  }).then(checkResponse)
 }
 
 //запрос на выход

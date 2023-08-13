@@ -18,7 +18,7 @@ export function getOrderNumber(ID) {
       "ingredients": ID
  }),
 })
-  .then(checkResponse)
+  .then(checkResponse);
 }
 
 //запрос на регистрацию 
@@ -33,10 +33,36 @@ export const registerUser = async (email, name, password) => {
       "password": password,
       "name": name
     }),
+  })
+  .then(checkResponse);
+}
+
+//запрос на авторизацию
+export const loginUser = async (email, password) => {
+  return await fetch(`${NORMA_API}/auth/login`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json;charset=utf-8",
+    },
+    body: JSON.stringify({
+      "email": email,
+      "password": password,
+    }),
+  })
+  .then(checkResponse)
+}
+
+//запрос на выход
+export const logOutUser = async (token) => {
+  return await fetch(`${NORMA_API}/auth/logout`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json;charset=utf-8",
+    },
+    body: JSON.stringify({
+      "token": token
+    }),
   });
-  const res_1 = await checkResponse(res);
-  localStorage.setItem('accessToken', res_1.accessToken);
-  localStorage.setItem('refreshToken', res_1.refreshToken);
 }
 
 //запрос на обновление токена
@@ -49,7 +75,8 @@ export const refreshToken = () => {
     body: JSON.stringify({
       token: localStorage.getItem("refreshToken"),
     }),
-  }).then(checkResponse);
+  })
+  .then(checkResponse);
 };
 
 //функция обертка вокруг запроса

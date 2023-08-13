@@ -5,14 +5,23 @@ import { useInputHandlers } from '../../utils/use-input';
 import { Link } from 'react-router-dom';
 import { registerRequest } from '../../services/actions/auth';
 import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 
 export function RegistrationPage() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const store = useSelector(store => store);
+
   const [inputValues, handleInputChange] = useInputHandlers();
 
   const handleClick = () => {
     const { email, name, password } = inputValues;
     dispatch(registerRequest(email, name, password))
+    if (!store.auth.registerFailed) {
+      navigate('/');
+    }
   }
 
   return (

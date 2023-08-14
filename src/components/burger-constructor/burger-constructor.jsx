@@ -20,6 +20,7 @@ const BurgerConstructor = () => {
   const store = useSelector((store) => store)
   const { modalType } = useSelector((store) => store.modal);
   const user = useSelector((store) => store.auth)
+  
   const submitOrder = () => {
     const noBuns = constructor.filter(item => item.type !== 'bun');
     const IDs = [bun?._id, ...noBuns.map(item => item._id)];
@@ -54,8 +55,8 @@ const BurgerConstructor = () => {
   }, []);
 
   // localStorage.removeItem('accessToken');
-  const username = localStorage.getItem('accessToken');
-console.log(user); // "john_doe"
+  // const username = localStorage.getItem('accessToken');
+// console.log(user); 
   return (
     <section className={styles.section} ref={dropTarget}>
       {bun && (

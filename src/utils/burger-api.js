@@ -69,15 +69,18 @@ export const getUserInfo = () => {
   return fetchWithRefresh(`${NORMA_API}/auth/user`, {
     method: "GET",
     headers: {
+      'Content-Type': 'application/json',
       Authorization: localStorage.getItem("accessToken"),
     },
   })
 }
 
+//запрос на изменение данных пользователя
 export const addUserInfo = (name, email, password) => {
   return fetchWithRefresh(`${NORMA_API}/auth/user`, {
     method: "PATCH",
     headers: {
+      'Content-Type': 'application/json',
       Authorization: localStorage.getItem("accessToken"),
     },
     body: JSON.stringify({
@@ -87,6 +90,34 @@ export const addUserInfo = (name, email, password) => {
     }),
   })
 }
+
+//запрос на восстановление пароля
+export const forgotPasswordRequest = (email) => {
+  return fetch(` ${NORMA_API}/password-reset`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json;charset=utf-8",
+    },
+    body: JSON.stringify({
+      "email": email,
+    }),
+  }).then(checkResponse)
+}
+
+//запрос на изменение пароля
+export const resetPasswordRequest = (email, token) => {
+  return fetch(`${NORMA_API}/password-reset/reset`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json;charset=utf-8",
+    },
+    body: JSON.stringify({
+      "email": email,
+      "token": token
+    }),
+  }).then(checkResponse)
+}
+
 
 //запрос на обновление токена
 export const refreshToken = () => {

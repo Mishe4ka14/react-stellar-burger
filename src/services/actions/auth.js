@@ -1,4 +1,4 @@
-import { addUserInfo, getUserInfo, logOutUser, loginUser, registerUser } from "../../utils/burger-api";
+import { addUserInfo, forgotPasswordRequest, getUserInfo, logOutUser, loginUser, registerUser } from "../../utils/burger-api";
 
 export const LOGIN_REQUEST = 'LOGIN_REEQUEST';
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
@@ -19,19 +19,18 @@ export const CHANGE_USER = 'CHANGE_USER'
 export const registerRequest = (email, password, name) => {
   return (dispatch) => {
     dispatch({ type: REGISTER_REQUEST });
-    // try {
+    try {
       return registerUser(email, password, name)
       .then((res) => {
         localStorage.setItem('accessToken', res.accessToken);
         localStorage.setItem('refreshToken', res.refreshToken);
         // dispatch({ type: REGISTER_SUCCESS, payload: res });
         dispatch(setUser(res.user));
-        // console.log(res)
         dispatch(setAuthChecked(true));
       })
-    // } catch (error) {
-    //   dispatch({ type: REGISTER_FAILED, payload: error.message });
-    // }
+    } catch (error) {
+      dispatch({ type: REGISTER_FAILED, payload: error.message });
+    }
   }
 }
 
@@ -112,3 +111,9 @@ export const addInfo = (name, email, password) => {
   };
 }
 
+// export const forgotPassword = (email) => {
+//   return (dispatch) => {
+//     return forgotPasswordRequest(email)
+//       .then
+//   }
+// }

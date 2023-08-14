@@ -40,7 +40,7 @@ export function ProfilePage() {
     dispatch(addInfo(values.name, values.email, values.password))
     console.log(user)
   }
-// console.log(user.name)
+
   return(
     <>
       <AppHeader/>

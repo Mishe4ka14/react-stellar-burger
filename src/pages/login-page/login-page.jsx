@@ -22,7 +22,6 @@ export function LoginPage() {
     // console.log(values.email)
     if(values.email && values.password) {
         dispatch(
-          
             loginRequest(values.email, values.password)
         )
         .then(() => {

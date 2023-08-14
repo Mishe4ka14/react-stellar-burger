@@ -66,8 +66,26 @@ export const logOutUser = async (token) => {
 //запрос на получание данные пользователя
 
 export const getUserInfo = () => {
-  return fetchWithRefresh(`${NORMA_API}/auth/user`)
-  .then(checkResponse)
+  return fetchWithRefresh(`${NORMA_API}/auth/user`, {
+    method: "GET",
+    headers: {
+      Authorization: localStorage.getItem("accessToken"),
+    },
+  })
+}
+
+export const addUserInfo = (name, email, password) => {
+  return fetchWithRefresh(`${NORMA_API}/auth/user`, {
+    method: "PATCH",
+    headers: {
+      Authorization: localStorage.getItem("accessToken"),
+    },
+    body: JSON.stringify({
+      email: email,
+      name: name,
+      password: password
+    }),
+  })
 }
 
 //запрос на обновление токена

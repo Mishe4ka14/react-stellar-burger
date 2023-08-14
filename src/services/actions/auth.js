@@ -1,4 +1,4 @@
-import { getUserInfo, logOutUser, loginUser, registerUser } from "../../utils/burger-api";
+import { addUserInfo, getUserInfo, logOutUser, loginUser, registerUser } from "../../utils/burger-api";
 export const LOGIN_REQUEST = 'LOGIN_REEQUEST';
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
 export const LOGIN_FAILED = 'LOGIN_FAILED';
@@ -13,6 +13,7 @@ export const LOGOUT_FAILED = 'LOGOUT_FAILED';
 
 export const SET_USER = 'SET_USER'
 export const SET_AUTH_CHECKED = 'SET_AUTH_CHECKED'
+export const CHANGE_USER = 'CHANGE_USER'
 
 export const registerRequest = (email, password, name) => {
   return (dispatch) => {
@@ -96,5 +97,17 @@ export const getUser = () => {
         dispatch(setUser(res.user))
       })
   }
+}
+
+export const addInfo = (name, email, password) => {
+  return (dispatch) => {
+    return addUserInfo(name, email, password)
+      .then((res) => {
+        dispatch(setUser({
+           name: res.name, email: res.email 
+        }));
+        return res;
+      });
+  };
 }
 

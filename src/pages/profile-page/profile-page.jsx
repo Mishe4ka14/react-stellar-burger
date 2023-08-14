@@ -3,7 +3,7 @@ import AppHeader from '../../components/app-header/app-header'
 import { Button, EmailInput, Input, PasswordInput } from "@ya.praktikum/react-developer-burger-ui-components";
 import { useInputHandlers } from '../../utils/use-input';
 import { Link } from 'react-router-dom';
-import { LOGOUT_SUCCESS, getUser, logoutRequest } from '../../services/actions/auth';
+import { LOGOUT_SUCCESS, addInfo, getUser, logoutRequest } from '../../services/actions/auth';
 import { useDispatch, useSelector } from 'react-redux';
 import { useState } from 'react';
 import { useEffect } from 'react';
@@ -18,19 +18,27 @@ export function ProfilePage() {
   const setInfo = () => {
     setInputValues({name: name, password: '', email: email})
   }
-useEffect(() => {
-  dispatch(getUser())
-  if(user){
-    setInfo()
-  }
-}, [])
+
+  useEffect(() => {
+    dispatch(getUser())
+    if(user){
+      setInfo()
+    }
+  }, [])
 
   const dispatch = useDispatch();
 
   const token = localStorage.getItem('refreshToken')
+
   const handleLogout = () => {
     dispatch(logoutRequest(token)); 
     dispatch({ type: LOGOUT_SUCCESS });
+  }
+
+  const handleChangeInfo = (e) => {
+    e.preventDefault()
+    dispatch(addInfo(values.name, values.email, values.password))
+    console.log(user)
   }
 
   return(
@@ -47,11 +55,12 @@ useEffect(() => {
           <Input type={'text'} extraClass='mt-4 mb-4' placeholder='Имя' value={values.name} onChange={handleInputChange} name="name" icon={'EditIcon'} />
           <EmailInput  type={'email'} extraClass='mt-4 mb-4' placeholder={'Логин'} value={values.email} onChange={handleInputChange} name="email" icon={'EditIcon'}/>
           <PasswordInput type={'password'} extraClass='mt-4 mb-4' placeholder={'Пароль'} value={values.password} onChange={handleInputChange} name="password" icon={'EditIcon'}/>
-          {}
-          <div className={styles.btn}>
-            <Button size="medium">Сохранить</Button>
-            <Button type="secondary" size="medium" >Отмена</Button>
-          </div>
+          {(values.name && values.email && values.password) &&
+            <div className={styles.btn}>
+              <Button onClick={handleChangeInfo} size="medium">Сохранить</Button>
+              <Button type="secondary" size="medium" >Отмена</Button>
+            </div>
+          }
         </div>
       </div>
     </>

@@ -12,6 +12,7 @@ import OrderModal from '../order-details/order-details';
 import { v4 as uuidv4 } from 'uuid';
 import { ConstructorItem } from '../constructor-item/constructor-item';
 import { useNavigate } from 'react-router-dom';
+import { Loader } from '../loader/loader';
 
 const BurgerConstructor = () => {
 
@@ -23,14 +24,23 @@ const BurgerConstructor = () => {
   const { modalType } = useSelector((store) => store.modal);
   const user = useSelector((store) => store.auth)
 
+  const [isLoading, setIsLoading] = useState(false);
+
   const submitOrder = () => {
     const noBuns = constructor.filter(item => item.type !== 'bun');
     const IDs = [bun?._id, ...noBuns.map(item => item._id)];
     if (IDs.length > 0) {
-      if(store.auth.user){
-        dispatch(getOrder(IDs));
+      if (store.auth.user) {
+        setIsLoading(true); // Показываем прелоадер перед запросом
+        dispatch(getOrder(IDs))
+          .catch(error => {
+            console.log(`Error: ${error}`);
+          })
+          .finally(() => {
+            setIsLoading(false); // Скрываем прелоадер после получения ответа
+          });
       } else {
-        navigate('/login')
+        navigate('/login');
       }
     }
   };
@@ -104,6 +114,7 @@ const BurgerConstructor = () => {
           <OrderModal />
         </Modal>
       )}
+       {isLoading && <Loader />}
     </section>
   );
 };

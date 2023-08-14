@@ -25,22 +25,37 @@ export const changeIngedients = (fromIndex, toIndex) => ({
 });
 
 export const getOrder = (ID) => {
-  return function(dispatch){
+  return function(dispatch) {
     dispatch({
-      type: GET_CONSTRUCTOR_REQUEST
+      type: GET_CONSTRUCTOR_REQUEST,
     });
-    getOrderNumber(ID).then(res => {
-      if (res && res.success) {
-        dispatch({
-          type: GET_CONSTRUCTOR_SUCCESS,
-          order: res.order.number
+
+    try {
+      return getOrderNumber(ID)
+        .then(res => {
+          if (res && res.success) {
+            dispatch({
+              type: GET_CONSTRUCTOR_SUCCESS,
+              order: res.order.number,
+            });
+            dispatch(openOrderModal(res.order));
+          } else {
+            dispatch({
+              type: GET_CONSTRUCTOR_FAILED,
+            });
+          }
+        })
+        .catch(error => {
+          dispatch({
+            type: GET_CONSTRUCTOR_FAILED,
+          });
+          console.error("Error: ", error.message);
         });
-        dispatch(openOrderModal(res.order))
-      } else {
-        dispatch({
-          type: GET_CONSTRUCTOR_FAILED
-        });
-      }
-    });
-}
-}
+    } catch (error) {
+      dispatch({
+        type: GET_CONSTRUCTOR_FAILED,
+      });
+      console.log("Error: ", error.message);
+    }
+  };
+};

@@ -13,5 +13,5 @@ export function useInputHandlers(inputValues) {
     });
   };
 
-  return [values, handleInputChange, setInputValues];
+  return {values, handleInputChange, setInputValues};
 }

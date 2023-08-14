@@ -17,16 +17,16 @@ export const authReducer = (store = initialState, action) => {
       ...store, registerRequest: true, registerFailed: false
     };
     case REGISTER_SUCCESS: return {
-      ...store, registerRequest: false, registerFailed: false, user: action.payload.user
+      ...store, registerRequest: false, registerFailed: false, user: action.payload
     };
     case REGISTER_FAILED: return {
       ...store, registerRequest: false, registerFailed: true 
-    };
+    };  
     case LOGIN_REQUEST: return {
        ...store, loginRequest: true, loginFailed: false 
     };
     case LOGIN_SUCCESS: return {
-       ...store, loginRequest: false, loginFailed: false, user: action.payload.user 
+       ...store, loginRequest: false, loginFailed: false, user: action.payload
     };
     case LOGIN_FAILED: return {
        ...store, loginRequest: false, loginFailed: true 

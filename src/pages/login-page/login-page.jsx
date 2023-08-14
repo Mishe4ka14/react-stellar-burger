@@ -13,7 +13,7 @@ export function LoginPage() {
   const navigate = useNavigate();
   const store = useSelector(store => store);
   
-  const  [values, handleInputChange ] = useInputHandlers({
+  const  {values, handleInputChange} = useInputHandlers({
     email: '', password: ''
   })
 
@@ -21,18 +21,16 @@ export function LoginPage() {
     e.preventDefault();
     // console.log(values.email)
     if(values.email && values.password) {
-        dispatch(
-            loginRequest(values.email, values.password)
-        )
-        .then(() => {
-          if (store.auth.loginFailed = false){
-            navigate('/');
-          }
-        })
-        .catch(err => {
-            console.log(`Error: ${err}`);
-        });
-      }
+      dispatch(
+          loginRequest(values.email, values.password)
+      )
+      .then(() => {
+          navigate('/');
+      })
+      .catch(err => {
+          console.log(`Error: ${err}`);
+      });
+  }
 };
 
   return(

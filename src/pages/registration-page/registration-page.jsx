@@ -12,15 +12,17 @@ export function RegistrationPage() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const store = useSelector(store => store);
+  const user = useSelector(store => store.auth);
 
-  const  [values, handleInputChange ] = useInputHandlers({
+  const  {values, handleInputChange} = useInputHandlers({
     email: '', password: '', name: ''
   })
 
-  const handleClick = (e) => {
+  const handleClick = async (e) => {
     e.preventDefault();
     // const { email, name, password } = values;
-    dispatch(registerRequest(values.email, values.name, values.password))
+    await dispatch(registerRequest(values.email, values.name, values.password))
+    console.log(user)
     if (!store.auth.registerFailed) {
       navigate('/');
     }

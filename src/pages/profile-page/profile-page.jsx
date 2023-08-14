@@ -9,14 +9,14 @@ import { useState } from 'react';
 import { useEffect } from 'react';
 
 export function ProfilePage() {
-  const {user} = useSelector((store) => store.auth)
-  const {name, password, email} = useSelector((store) => store.auth.user)
-  const [values, handleInputChange, setInputValues] = useInputHandlers({
+  const { user } = useSelector((store) => store.auth)
+  // const {name, password, email} = useSelector((store) => store.auth.user)
+  const {values, handleInputChange, setInputValues} = useInputHandlers({
     name: '', password: '', email: ''
   });
 
   const setInfo = () => {
-    setInputValues({name: name, password: '', email: email})
+    setInputValues({name: user.name, password: '', email: user.email})
   }
 
   useEffect(() => {
@@ -40,7 +40,7 @@ export function ProfilePage() {
     dispatch(addInfo(values.name, values.email, values.password))
     console.log(user)
   }
-
+// console.log(user.name)
   return(
     <>
       <AppHeader/>
@@ -58,7 +58,7 @@ export function ProfilePage() {
           {(values.name && values.email && values.password) &&
             <div className={styles.btn}>
               <Button onClick={handleChangeInfo} size="medium">Сохранить</Button>
-              <Button type="secondary" size="medium" >Отмена</Button>
+              <Button onClick={setInfo} type="secondary" size="medium" >Отмена</Button>
             </div>
           }
         </div>

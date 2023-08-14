@@ -1,4 +1,5 @@
 import { addUserInfo, getUserInfo, logOutUser, loginUser, registerUser } from "../../utils/burger-api";
+
 export const LOGIN_REQUEST = 'LOGIN_REEQUEST';
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
 export const LOGIN_FAILED = 'LOGIN_FAILED';
@@ -18,32 +19,32 @@ export const CHANGE_USER = 'CHANGE_USER'
 export const registerRequest = (email, password, name) => {
   return (dispatch) => {
     dispatch({ type: REGISTER_REQUEST });
-    try {
-      return registerUser(email, name, password)
-      .then((response) => {
-        localStorage.setItem('accessToken', response.accessToken);
-        localStorage.setItem('refreshToken', response.refreshToken);
-        dispatch({ type: REGISTER_SUCCESS, payload: response });
+    // try {
+      return registerUser(email, password, name)
+      .then((res) => {
+        localStorage.setItem('accessToken', res.accessToken);
+        localStorage.setItem('refreshToken', res.refreshToken);
+        // dispatch({ type: REGISTER_SUCCESS, payload: res });
+        dispatch(setUser(res.user));
+        // console.log(res)
+        dispatch(setAuthChecked(true));
       })
-    } catch (error) {
-      dispatch({ type: REGISTER_FAILED, payload: error.message });
-    }
+    // } catch (error) {
+    //   dispatch({ type: REGISTER_FAILED, payload: error.message });
+    // }
   }
 }
 
 export const loginRequest = (email, password) => {
-  return async (dispatch) => {
+  return (dispatch) => {
     dispatch({ type: LOGIN_REQUEST });
-    try {
-      const response = await loginUser(email, password);
-      localStorage.setItem('accessToken', response.accessToken);
-      localStorage.setItem('refreshToken', response.refreshToken);
-      dispatch({ type: LOGIN_SUCCESS, payload: response });
-      dispatch(setUser(response.user));
+    return loginUser(email, password).then((res)=> {
+      localStorage.setItem('accessToken', res.accessToken);
+      localStorage.setItem('refreshToken', res.refreshToken);
+      // dispatch({ type: LOGIN_SUCCESS, payload: res });
+      dispatch(setUser(res.user));
       dispatch(setAuthChecked(true));
-    } catch (error) {
-      dispatch({ type: LOGIN_FAILED, payload: error.message });
-    }
+    })
   }
 }
 
@@ -104,7 +105,7 @@ export const addInfo = (name, email, password) => {
     return addUserInfo(name, email, password)
       .then((res) => {
         dispatch(setUser({
-           name: res.name, email: res.email 
+           name: res.user.name, email: res.user.email 
         }));
         return res;
       });

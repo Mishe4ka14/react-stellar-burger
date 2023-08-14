@@ -1,6 +1,6 @@
 import styles from './registration-page.module.css'
 import AppHeader from '../../components/app-header/app-header'
-import { Button, Input } from "@ya.praktikum/react-developer-burger-ui-components";
+import { Button, EmailInput, Input, PasswordInput } from "@ya.praktikum/react-developer-burger-ui-components";
 import { useInputHandlers } from '../../utils/use-input';
 import { Link } from 'react-router-dom';
 import { registerRequest } from '../../services/actions/auth';
@@ -36,10 +36,10 @@ export function RegistrationPage() {
         <Input type={'text'} extraClass='mt-4 mb-4' placeholder={'Имя'} value={values.name}
         onChange={handleInputChange}
         name="name"/>
-        <Input type={'email'} extraClass='mt-4 mb-4' placeholder={'E-mail'} value={values.email}
+        <EmailInput type={'email'} extraClass='mt-4 mb-4' placeholder={'E-mail'} value={values.email}
         onChange={handleInputChange}
         name="email"/>
-        <Input type={'password'} extraClass='mt-4 mb-4' placeholder={'Пароль'} icon={'ShowIcon'} value={values.password}
+        <PasswordInput type={'password'} extraClass='mt-4 mb-4' placeholder={'Пароль'} icon={'ShowIcon'} value={values.password}
         onChange={handleInputChange}
         name="password"/>
         <Button htmlType="button" extraClass='mt-4'onClick={handleClick} >Зарегистрироваться</Button>

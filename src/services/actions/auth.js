@@ -1,4 +1,4 @@
-import { addUserInfo, forgotPasswordRequest, getUserInfo, logOutUser, loginUser, registerUser } from "../../utils/burger-api";
+import { addUserInfo, getUserInfo, logOutUser, loginUser, registerUser } from "../../utils/burger-api";
 
 export const LOGIN_REQUEST = 'LOGIN_REEQUEST';
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
@@ -14,7 +14,6 @@ export const LOGOUT_FAILED = 'LOGOUT_FAILED';
 
 export const SET_USER = 'SET_USER'
 export const SET_AUTH_CHECKED = 'SET_AUTH_CHECKED'
-export const CHANGE_USER = 'CHANGE_USER'
 
 export const registerRequest = (email, password, name) => {
   return (dispatch) => {
@@ -24,7 +23,7 @@ export const registerRequest = (email, password, name) => {
       .then((res) => {
         localStorage.setItem('accessToken', res.accessToken);
         localStorage.setItem('refreshToken', res.refreshToken);
-        // dispatch({ type: REGISTER_SUCCESS, payload: res });
+        dispatch({ type: REGISTER_SUCCESS});
         dispatch(setUser(res.user));
         dispatch(setAuthChecked(true));
       })
@@ -40,9 +39,13 @@ export const loginRequest = (email, password) => {
     return loginUser(email, password).then((res)=> {
       localStorage.setItem('accessToken', res.accessToken);
       localStorage.setItem('refreshToken', res.refreshToken);
-      // dispatch({ type: LOGIN_SUCCESS, payload: res });
+      dispatch({ type: LOGIN_SUCCESS});
       dispatch(setUser(res.user));
       dispatch(setAuthChecked(true));
+      return res;
+    })
+    .catch(error => {
+      dispatch({ type: LOGIN_FAILED, payload: error.message });
     })
   }
 }
@@ -50,7 +53,6 @@ export const loginRequest = (email, password) => {
 export const logoutRequest = (token) => {
   return async function (dispatch) {
     dispatch({ type: LOGOUT_REQUEST });
-
     try {
       await logOutUser(token)
       .then(() => {
@@ -96,6 +98,9 @@ export const getUser = () => {
       .then((res) => {
         dispatch(setUser(res.user))
       })
+      .catch(err => {
+        console.error("Error: ", err);
+      });
   }
 }
 
@@ -107,13 +112,10 @@ export const addInfo = (name, email, password) => {
            name: res.user.name, email: res.user.email 
         }));
         return res;
+      })
+      .catch(err => {
+        console.error("Error: ", err);
       });
   };
 }
 
-// export const forgotPassword = (email) => {
-//   return (dispatch) => {
-//     return forgotPasswordRequest(email)
-//       .then
-//   }
-// }

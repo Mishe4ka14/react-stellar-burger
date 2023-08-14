@@ -1,4 +1,4 @@
-import { LOGIN_REQUEST, LOGIN_FAILED, LOGIN_SUCCESS, REGISTER_FAILED, REGISTER_SUCCESS, REGISTER_REQUEST, LOGOUT_FAILED, LOGOUT_REQUEST, LOGOUT_SUCCESS, SET_AUTH_CHECKED, SET_USER, CHANGE_USER } from "../actions/auth"
+import { LOGIN_REQUEST, LOGIN_FAILED, LOGIN_SUCCESS, REGISTER_FAILED, REGISTER_SUCCESS, REGISTER_REQUEST, LOGOUT_FAILED, LOGOUT_REQUEST, LOGOUT_SUCCESS, SET_AUTH_CHECKED, SET_USER, } from "../actions/auth"
 
 const initialState = {
     user: null,
@@ -17,7 +17,7 @@ export const authReducer = (store = initialState, action) => {
       ...store, registerRequest: true, registerFailed: false
     };
     case REGISTER_SUCCESS: return {
-      ...store, registerRequest: false, registerFailed: false, user: action.payload
+      ...store, registerRequest: false, registerFailed: false,
     };
     case REGISTER_FAILED: return {
       ...store, registerRequest: false, registerFailed: true 
@@ -26,7 +26,7 @@ export const authReducer = (store = initialState, action) => {
        ...store, loginRequest: true, loginFailed: false 
     };
     case LOGIN_SUCCESS: return {
-       ...store, loginRequest: false, loginFailed: false, user: action.payload
+       ...store, loginRequest: false, loginFailed: false,
     };
     case LOGIN_FAILED: return {
        ...store, loginRequest: false, loginFailed: true 

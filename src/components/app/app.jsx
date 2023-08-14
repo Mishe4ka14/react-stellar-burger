@@ -10,10 +10,9 @@ import IngredientDetails from '../ingredient-details/ingredient-details';
 import Modal from '../modal/modal';
 import {React, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { getIngredients } from '../../services/actions/ingredients';
-import AppHeader from '../app-header/app-header';
 import { OnlyAuth, OnlyUnAuth } from '../protected-route/protected-route';
 import { checkUserAuth } from '../../services/actions/auth';
+import { ErrorPage } from '../../pages/404-page/404-page';
 
 function App() {
 
@@ -41,6 +40,7 @@ function App() {
         <Route path="/profile" element={<OnlyAuth component={<ProfilePage />} />}/>
         <Route path='/ingredients/:ingredientId'
                element={<IngredientDetails />} />
+        <Route path='*' element={<ErrorPage/>} />       
       </Routes>
 
       {background && (

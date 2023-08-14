@@ -14,13 +14,15 @@ import { ConstructorItem } from '../constructor-item/constructor-item';
 import { useNavigate } from 'react-router-dom';
 
 const BurgerConstructor = () => {
+
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  
   const { constructor, bun } = useSelector((store) => store.ingredient);
   const store = useSelector((store) => store)
   const { modalType } = useSelector((store) => store.modal);
   const user = useSelector((store) => store.auth)
-  
+
   const submitOrder = () => {
     const noBuns = constructor.filter(item => item.type !== 'bun');
     const IDs = [bun?._id, ...noBuns.map(item => item._id)];

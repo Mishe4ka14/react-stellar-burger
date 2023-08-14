@@ -5,12 +5,15 @@ import { useInputHandlers } from '../../utils/use-input';
 import { Link } from 'react-router-dom';
 import { LOGOUT_SUCCESS, addInfo, getUser, logoutRequest } from '../../services/actions/auth';
 import { useDispatch, useSelector } from 'react-redux';
-import { useState } from 'react';
 import { useEffect } from 'react';
 
 export function ProfilePage() {
+  
+  const dispatch = useDispatch();
+  const token = localStorage.getItem('refreshToken')
+
   const { user } = useSelector((store) => store.auth)
-  // const {name, password, email} = useSelector((store) => store.auth.user)
+
   const {values, handleInputChange, setInputValues} = useInputHandlers({
     name: '', password: '', email: ''
   });
@@ -26,9 +29,6 @@ export function ProfilePage() {
     }
   }, [])
 
-  const dispatch = useDispatch();
-
-  const token = localStorage.getItem('refreshToken')
 
   const handleLogout = () => {
     dispatch(logoutRequest(token)); 

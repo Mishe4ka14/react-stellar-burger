@@ -1,7 +1,6 @@
 import styles from './forgot-password.module.css'
 import AppHeader from '../../components/app-header/app-header'
 import { Button, Input } from "@ya.praktikum/react-developer-burger-ui-components";
-import { useInputHandlers } from '../../utils/use-input';
 import { Link, useNavigate } from 'react-router-dom';
 import {useState} from 'react'
 import { forgotPasswordRequest } from '../../utils/burger-api';

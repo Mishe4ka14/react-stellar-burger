@@ -1,6 +1,6 @@
 import styles from './login-page.module.css'
 import AppHeader from '../../components/app-header/app-header'
-import { Button, Input } from "@ya.praktikum/react-developer-burger-ui-components";
+import { Button, EmailInput, PasswordInput } from "@ya.praktikum/react-developer-burger-ui-components";
 import { Link } from 'react-router-dom';
 import { useInputHandlers } from '../../utils/use-input';
 import { useDispatch } from 'react-redux';
@@ -11,7 +11,6 @@ import { useSelector } from 'react-redux';
 export function LoginPage() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const store = useSelector(store => store);
   
   const  {values, handleInputChange} = useInputHandlers({
     email: '', password: ''
@@ -19,28 +18,27 @@ export function LoginPage() {
 
   const handleLogin = (e) => {
     e.preventDefault();
-    // console.log(values.email)
-    if(values.email && values.password) {
-      dispatch(
-          loginRequest(values.email, values.password)
-      )
-      .then(() => {
-          navigate('/');
-      })
-      .catch(err => {
+    if (values.email && values.password) {
+      dispatch(loginRequest(values.email, values.password))
+        .then((res) => {
+          if (res && res.success) {
+            navigate('/');
+          }
+        })
+        .catch(err => {
           console.log(`Error: ${err}`);
-      });
-  }
-};
+        });
+    }
+  };
 
   return(
     <>
       <AppHeader/>
       <div className={styles.container}>
         <h1 className="text text_type_main-medium">Вход</h1>
-        <Input type={'email'} extraClass='mt-4 mb-4' placeholder={'E-mail'} value={values.email} onChange={handleInputChange}
+        <EmailInput type={'email'} extraClass='mt-4 mb-4' placeholder={'E-mail'} value={values.email} onChange={handleInputChange}
         name="email"/>
-        <Input type={'password'} extraClass='mt-4 mb-4' placeholder={'Пароль'} icon={'ShowIcon'} value={values.password}
+        <PasswordInput type={'password'} extraClass='mt-4 mb-4' placeholder={'Пароль'} icon={'ShowIcon'} value={values.password}
         onChange={handleInputChange}
         name="password"/>
         <Button onClick={handleLogin} htmlType="button" extraClass='mt-4 mb-20'>Войти</Button>

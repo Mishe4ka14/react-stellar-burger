@@ -13,12 +13,14 @@ export function RegistrationPage() {
   const navigate = useNavigate();
   const store = useSelector(store => store);
 
-  const [inputValues, handleInputChange] = useInputHandlers();
+  const  [values, handleInputChange ] = useInputHandlers({
+    email: '', password: '', name: ''
+  })
 
   const handleClick = (e) => {
     e.preventDefault();
-    const { email, name, password } = inputValues;
-    dispatch(registerRequest(email, name, password))
+    // const { email, name, password } = values;
+    dispatch(registerRequest(values.email, values.name, values.password))
     if (!store.auth.registerFailed) {
       navigate('/');
     }
@@ -29,13 +31,13 @@ export function RegistrationPage() {
       <AppHeader/>
       <div className={styles.container}>
         <h1 className="text text_type_main-medium">Регистрация</h1>
-        <Input type={'text'} extraClass='mt-4 mb-4' placeholder={'Имя'} value={inputValues.name}
+        <Input type={'text'} extraClass='mt-4 mb-4' placeholder={'Имя'} value={values.name}
         onChange={handleInputChange}
         name="name"/>
-        <Input type={'email'} extraClass='mt-4 mb-4' placeholder={'E-mail'} value={inputValues.email}
+        <Input type={'email'} extraClass='mt-4 mb-4' placeholder={'E-mail'} value={values.email}
         onChange={handleInputChange}
         name="email"/>
-        <Input type={'password'} extraClass='mt-4 mb-4' placeholder={'Пароль'} icon={'ShowIcon'} value={inputValues.password}
+        <Input type={'password'} extraClass='mt-4 mb-4' placeholder={'Пароль'} icon={'ShowIcon'} value={values.password}
         onChange={handleInputChange}
         name="password"/>
         <Button htmlType="button" extraClass='mt-4'onClick={handleClick} >Зарегистрироваться</Button>

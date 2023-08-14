@@ -15,7 +15,9 @@ const Modal = ({children, onClose}) => {
 
 const handlerClose = () => {
   dispatch(closeModal())
-  onClose()
+  if (typeof onClose === 'function') {
+    onClose();
+  }
 }
 
   const escClose = (e) => {

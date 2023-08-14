@@ -13,22 +13,27 @@ export function LoginPage() {
   const navigate = useNavigate();
   const store = useSelector(store => store);
   
-  const  [inputValues, handleInputChange ] = useInputHandlers()
+  const  [values, handleInputChange ] = useInputHandlers({
+    email: '', password: ''
+  })
 
   const handleLogin = (e) => {
     e.preventDefault();
+    // console.log(values.email)
+    if(values.email && values.password) {
         dispatch(
-            loginRequest(inputValues.email, inputValues.password)
+          
+            loginRequest(values.email, values.password)
         )
         .then(() => {
           if (store.auth.loginFailed = false){
-            console.log(store.auth.loginFailed)
             navigate('/');
           }
         })
         .catch(err => {
             console.log(`Error: ${err}`);
         });
+      }
 };
 
   return(
@@ -36,9 +41,9 @@ export function LoginPage() {
       <AppHeader/>
       <div className={styles.container}>
         <h1 className="text text_type_main-medium">Вход</h1>
-        <Input type={'email'} extraClass='mt-4 mb-4' placeholder={'E-mail'} value={inputValues.email} onChange={handleInputChange}
+        <Input type={'email'} extraClass='mt-4 mb-4' placeholder={'E-mail'} value={values.email} onChange={handleInputChange}
         name="email"/>
-        <Input type={'password'} extraClass='mt-4 mb-4' placeholder={'Пароль'} icon={'ShowIcon'} value={inputValues.password}
+        <Input type={'password'} extraClass='mt-4 mb-4' placeholder={'Пароль'} icon={'ShowIcon'} value={values.password}
         onChange={handleInputChange}
         name="password"/>
         <Button onClick={handleLogin} htmlType="button" extraClass='mt-4 mb-20'>Войти</Button>

@@ -38,7 +38,6 @@ export const registerUser = async (email, name, password) => {
 
 //запрос на авторизацию
 export const loginUser = async (email, password) => {
-  console.log(email, password)
   return fetch(`${NORMA_API}/auth/login`, {
     method: "POST",
     headers: {
@@ -67,7 +66,7 @@ export const logOutUser = async (token) => {
 //запрос на получание данные пользователя
 
 export const getUserInfo = () => {
-  return fetchWithRefresh(`${NORMA_API}auth/user`)
+  return fetchWithRefresh(`${NORMA_API}/auth/user`)
   .then(checkResponse)
 }
 

@@ -11,18 +11,24 @@ import Modal from '../modal/modal';
 import OrderModal from '../order-details/order-details';
 import { v4 as uuidv4 } from 'uuid';
 import { ConstructorItem } from '../constructor-item/constructor-item';
-
+import { useNavigate } from 'react-router-dom';
 
 const BurgerConstructor = () => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const { constructor, bun } = useSelector((store) => store.ingredient);
+  const store = useSelector((store) => store)
   const { modalType } = useSelector((store) => store.modal);
 
   const submitOrder = () => {
     const noBuns = constructor.filter(item => item.type !== 'bun');
-    const IDs = [bun._id, ...noBuns.map(item => item._id)];
+    const IDs = [bun?._id, ...noBuns.map(item => item._id)];
     if (IDs.length > 0) {
-      dispatch(getOrder(IDs));
+      if(store.auth.user){
+        dispatch(getOrder(IDs));
+      } else {
+        navigate('/login')
+      }
     }
   };
   

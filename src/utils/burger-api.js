@@ -106,14 +106,14 @@ export const forgotPasswordRequest = (email) => {
 }
 
 //запрос на изменение пароля
-export const resetPasswordRequest = (email, token) => {
+export const resetPasswordRequest = (password, token) => {
   return fetch(`${NORMA_API}/password-reset/reset`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json;charset=utf-8",
     },
     body: JSON.stringify({
-      "email": email,
+      "password": password,
       "token": token
     }),
   }).then(checkResponse)

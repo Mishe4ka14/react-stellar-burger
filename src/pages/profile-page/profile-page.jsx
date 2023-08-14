@@ -1,7 +1,7 @@
 import styles from './profile-page.module.css'
 import AppHeader from '../../components/app-header/app-header'
 import { Button, EmailInput, Input, PasswordInput } from "@ya.praktikum/react-developer-burger-ui-components";
-import { useInputHandlers } from '../../utils/use-input';
+import { useInputHandlers } from '../../hooks/use-input';
 import { Link } from 'react-router-dom';
 import { LOGOUT_SUCCESS, addInfo, getUser, logoutRequest } from '../../services/actions/auth';
 import { useDispatch, useSelector } from 'react-redux';

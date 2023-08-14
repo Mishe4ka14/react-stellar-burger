@@ -2,7 +2,7 @@ import styles from './login-page.module.css'
 import AppHeader from '../../components/app-header/app-header'
 import { Button, EmailInput, PasswordInput } from "@ya.praktikum/react-developer-burger-ui-components";
 import { Link } from 'react-router-dom';
-import { useInputHandlers } from '../../utils/use-input';
+import { useInputHandlers } from '../../hooks/use-input';
 import { useDispatch } from 'react-redux';
 import { loginRequest } from '../../services/actions/auth';
 import { useNavigate } from 'react-router-dom';

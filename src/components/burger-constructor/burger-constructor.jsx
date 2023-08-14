@@ -28,11 +28,11 @@ const BurgerConstructor = () => {
 
   const submitOrder = () => {
     const noBuns = constructor.filter(item => item.type !== 'bun');
-    const IDs = [bun?._id, ...noBuns.map(item => item._id)];
-    if (IDs.length > 0) {
+    const ids = [bun?._id, ...noBuns.map(item => item._id)];
+    if (ids.length > 0) {
       if (store.auth.user) {
         setIsLoading(true); // Показываем прелоадер перед запросом
-        dispatch(getOrder(IDs))
+        dispatch(getOrder(ids))
           .catch(error => {
             console.log(`Error: ${error}`);
           })

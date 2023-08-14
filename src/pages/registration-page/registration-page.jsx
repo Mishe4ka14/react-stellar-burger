@@ -1,7 +1,7 @@
 import styles from './registration-page.module.css'
 import AppHeader from '../../components/app-header/app-header'
 import { Button, EmailInput, Input, PasswordInput } from "@ya.praktikum/react-developer-burger-ui-components";
-import { useInputHandlers } from '../../utils/use-input';
+import { useInputHandlers } from '../../hooks/use-input';
 import { Link } from 'react-router-dom';
 import { registerRequest } from '../../services/actions/auth';
 import { useDispatch } from 'react-redux';
@@ -20,11 +20,12 @@ export function RegistrationPage() {
 
   const handleClick = async (e) => {
     e.preventDefault();
-    // const { email, name, password } = values;
-    await dispatch(registerRequest(values.email, values.name, values.password))
-    console.log(user)
-    if (!store.auth.registerFailed) {
-      navigate('/');
+    if(values.email.length > 0 || values.name.length > 0 || values.password.length > 0){
+      await dispatch(registerRequest(values.email, values.name, values.password))
+      console.log(user)
+      if (!store.auth.registerFailed) {
+        navigate('/');
+      }
     }
   }
 

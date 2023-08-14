@@ -43,21 +43,17 @@ function App() {
         <Route path='*' element={<ErrorPage/>} />       
       </Routes>
 
-      {background && (
-        <>
+      {background && (  
         <Routes>
           <Route
             path='/ingredients/:ingredientId'
             element={
-              <>
                 <Modal onClose={handleModalClose}>
                   <IngredientDetails />
                 </Modal>
-              </>
             }
           />
         </Routes>
-        </>
       )}
     </>
     

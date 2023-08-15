@@ -2,13 +2,14 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
-  margin: 10vw 0;
-  margin-left: 60px;
+  /* align-items:center; */
+  margin-top: 7%;
+  margin-left: 15%;
 }
 
 .box{
   display: flex;
+  position: relative; 
 }
 
 .nav{
@@ -16,9 +17,8 @@
   flex-direction: column;
   align-self: center;
   justify-content: center;
-  margin: 10vw 0;
-  margin-left: 18%;
-  max-width: 250px;
+  /* margin-left: 10%; */
+  max-width: 400px;
 }
 
 .Link{
@@ -29,10 +29,8 @@
 .link{
   text-decoration:none;
   color: white;
-  cursor:auto;
 }
-
-.btn{
-  margin-top: 20px;
-  display: flex;
-}
+ .inactive {
+  text-decoration: none;
+  color: #8585AD;
+ }

@@ -13,6 +13,8 @@ import { useDispatch } from 'react-redux';
 import { OnlyAuth, OnlyUnAuth } from '../protected-route/protected-route';
 import { checkUserAuth } from '../../services/actions/auth';
 import { ErrorPage } from '../../pages/404-page/404-page';
+import { ProfileOrders } from '../../pages/profile-orders/profile-orders';
+import { Profile } from '../../pages/profile/profile';
 
 function App() {
 
@@ -37,7 +39,11 @@ function App() {
         <Route path="/register" element={<OnlyUnAuth component={<RegistrationPage />} />}/>
         <Route path="/forgot-password" element={<OnlyUnAuth component={<ForgotPassword />} />}/>
         <Route path="/reset-password" element={<OnlyUnAuth component={<ResetPassword />} />}/>
-        <Route path="/profile" element={<OnlyAuth component={<ProfilePage />} />}/>
+        <Route path="/profile" element={<OnlyAuth component={<ProfilePage />} />}>
+          <Route path="/profile" element={<OnlyAuth component={<Profile />} />}/>
+          <Route path="/profile/orders" element={<OnlyAuth component={<ProfileOrders />} />}/>
+        </Route>  
+
         <Route path='/ingredients/:ingredientId'
                element={<IngredientDetails />} />
         <Route path='*' element={<ErrorPage/>} />       

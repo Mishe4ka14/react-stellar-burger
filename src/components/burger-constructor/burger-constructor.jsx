@@ -11,18 +11,37 @@ import Modal from '../modal/modal';
 import OrderModal from '../order-details/order-details';
 import { v4 as uuidv4 } from 'uuid';
 import { ConstructorItem } from '../constructor-item/constructor-item';
-
+import { useNavigate } from 'react-router-dom';
+import { Loader } from '../loader/loader';
 
 const BurgerConstructor = () => {
+
+  const navigate = useNavigate();
   const dispatch = useDispatch();
+  
   const { constructor, bun } = useSelector((store) => store.ingredient);
+  const store = useSelector((store) => store)
   const { modalType } = useSelector((store) => store.modal);
+  const user = useSelector((store) => store.auth)
+
+  const [isLoading, setIsLoading] = useState(false);
 
   const submitOrder = () => {
     const noBuns = constructor.filter(item => item.type !== 'bun');
-    const IDs = [bun._id, ...noBuns.map(item => item._id)];
-    if (IDs.length > 0) {
-      dispatch(getOrder(IDs));
+    const ids = [bun?._id, ...noBuns.map(item => item._id)];
+    if (ids.length > 0) {
+      if (store.auth.user) {
+        setIsLoading(true); // Показываем прелоадер перед запросом
+        dispatch(getOrder(ids))
+          .catch(error => {
+            console.log(`Error: ${error}`);
+          })
+          .finally(() => {
+            setIsLoading(false); // Скрываем прелоадер после получения ответа
+          });
+      } else {
+        navigate('/login');
+      }
     }
   };
   
@@ -47,6 +66,9 @@ const BurgerConstructor = () => {
     dispatch(changeIngedients(dragIndex, hoverIndex));
   }, []);
 
+  // localStorage.removeItem('accessToken');
+  // const username = localStorage.getItem('accessToken');
+// console.log(user); 
   return (
     <section className={styles.section} ref={dropTarget}>
       {bun && (
@@ -92,6 +114,7 @@ const BurgerConstructor = () => {
           <OrderModal />
         </Modal>
       )}
+       {isLoading && <Loader />}
     </section>
   );
 };

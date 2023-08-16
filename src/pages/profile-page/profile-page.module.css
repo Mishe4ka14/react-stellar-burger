@@ -1,0 +1,36 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  /* align-items:center; */
+  margin-top: 7%;
+  margin-left: 15%;
+}
+
+.box{
+  display: flex;
+  position: relative; 
+}
+
+.nav{
+  display: flex;
+  flex-direction: column;
+  align-self: center;
+  justify-content: center;
+  /* margin-left: 10%; */
+  max-width: 400px;
+}
+
+.Link{
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.link{
+  text-decoration:none;
+  color: white;
+}
+ .inactive {
+  text-decoration: none;
+  color: #8585AD;
+ }

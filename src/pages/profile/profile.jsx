@@ -32,7 +32,6 @@ export const Profile = () => {
     dispatch(addInfo(values.name, values.email, values.password))
   }
   return(
-    <>
         <div className={styles.container}>
           <Input type={'text'} extraClass='mt-4 mb-4' placeholder='Имя' value={values.name} onChange={handleInputChange} name="name" icon={'EditIcon'} />
           <EmailInput  type={'email'} extraClass='mt-4 mb-4' placeholder={'Логин'} value={values.email} onChange={handleInputChange} name="email" icon={'EditIcon'}/>
@@ -44,7 +43,6 @@ export const Profile = () => {
             </div>
           }
         </div>  
-    </>
       
   )
 }

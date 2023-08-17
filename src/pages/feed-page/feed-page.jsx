@@ -2,6 +2,7 @@ import styles from './feed-page.module.css'
 import AppHeader from "../../components/app-header/app-header";
 import { OrderCard } from '../../components/order-card/order-card';
 import { Link, useLocation } from 'react-router-dom';
+import { OrderInfo } from '../../components/order-info/order-info';
 
 export const FeedPage = () => {
   const location = useLocation();
@@ -12,7 +13,7 @@ export const FeedPage = () => {
       <div className={styles.page}>
         <ul className={`${styles.scroll} custom-scroll`}>
           <Link to='/feed/:id' className={styles.link}
-          // state={{ background: location }}
+          state={{ background: location }}
           >
             <OrderCard/>
           </Link>

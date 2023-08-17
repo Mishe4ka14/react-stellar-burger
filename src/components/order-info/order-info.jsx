@@ -12,8 +12,8 @@ export const OrderInfo = () => {
   return(
     <>
       {background ? null : <AppHeader />}
-      <div className={background ? null : styles.container}>
-        <p className='text text_type_main-default mr-6 pb-10'>#345678</p>
+      <div className={background ? styles.modal : styles.container}>
+        <p className='text text_type_main-default mr-6 pb-10'>#311111111</p>
         <div style={{display: 'flex', flexDirection: 'column', marginRight: 190}} >
           <h1 className='text text_type_main-medium pb-3'>Death Star Starship Main бургер</h1>
           <p className='text text_type_main-small pb-15'>Готовится</p>
@@ -37,15 +37,16 @@ export const OrderInfo = () => {
             ))}
           </div>
         </ul>
-      
+        <div className={styles.bottom}>
           <div className={styles.time}>
-            <FormattedDate className={` text text_type_main-default pl-30 text_color_inactive`} date={yesterday}/>
-            <p className='text text_type_main-default text_color_inactive mr-6'>i-GTM+3</p>
+            <FormattedDate className={` text text_type_main-default mr-4 text_color_inactive`} date={yesterday}/>
+            <p className={`text text_type_main-default text_color_inactive mr-6 ${styles.gtm} `}>i-GTM+3</p>
           </div>
           <div className={styles.fullPrice}>
             <p className='text text_type_main-default mr-2'>15000</p>  
             <CurrencyIcon/>
-          </div>
+          </div>          
+        </div>
       </div>
     </>
   )

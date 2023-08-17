@@ -1,5 +1,5 @@
 import styles from './profile.module.css'
-import { Button, EmailInput, Input} from "@ya.praktikum/react-developer-burger-ui-components";
+import { Button, EmailInput, Input, PasswordInput} from "@ya.praktikum/react-developer-burger-ui-components";
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 import { useEffect } from 'react';
@@ -35,7 +35,7 @@ export const Profile = () => {
         <div className={styles.container}>
           <Input type={'text'} extraClass='mt-4 mb-4' placeholder='Имя' value={values.name} onChange={handleInputChange} name="name" icon={'EditIcon'} />
           <EmailInput  type={'email'} extraClass='mt-4 mb-4' placeholder={'Логин'} value={values.email} onChange={handleInputChange} name="email" icon={'EditIcon'}/>
-          <Input type={'password'} extraClass='mt-4 mb-4' placeholder={'Пароль'} value={values.password} onChange={handleInputChange} name="password" icon={'EditIcon'}/>
+          <PasswordInput type={'password'} extraClass='mt-4 mb-4' placeholder={'Пароль'} value={values.password} onChange={handleInputChange} name="password" icon={'EditIcon'}/>
           {(values.name && values.email && values.password) &&
             <div className={styles.btn}>
               <Button htmlType='submit' onClick={handleChangeInfo} size="medium">Сохранить</Button>

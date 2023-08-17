@@ -1,0 +1,19 @@
+.page{
+  display: flex;
+  margin-left: 270px;
+}
+
+.title{
+  margin-left: 270px;
+}
+
+.scroll {
+  padding: 0;
+  margin: 0;
+  /* margin-top: 40px; */
+  display: flex;
+  flex-direction: column;
+  max-height: 67vh;
+  width: 600px;
+  overflow: auto;
+}

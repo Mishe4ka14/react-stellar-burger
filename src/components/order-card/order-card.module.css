@@ -1,0 +1,45 @@
+.card{
+  background-color: #1C1C21;
+  max-width: 600px;
+  /* min-height: 200px; */
+  border-radius: 30px;
+}
+
+.info {
+  padding-top: 24px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.rounded_img {
+  width: 50px; 
+  height: 50px; 
+  border-radius: 50%; 
+  overflow: hidden; 
+  position: relative;
+  border: 2px solid purple;
+  object-fit: cover; 
+  margin-left: -15px;
+  background-color: #1C1C21;
+}
+
+.box{
+  position: relative;
+  display: flex;
+  justify-content: start;
+}
+
+.container{
+  display: flex;
+  align-items: center;
+  position: absolute;
+  bottom: 35px;
+  right: 1px;
+}
+
+.number {
+  position: absolute;
+  bottom: 43px;
+  left: 195px;
+  z-index: 100;
+}

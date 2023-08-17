@@ -1,7 +1,5 @@
 import styles from './order-card.module.css'
 import { FormattedDate, CurrencyIcon } from "@ya.praktikum/react-developer-burger-ui-components";
-import { useEffect } from 'react';
-import { getIngredients } from '../../services/actions/ingredients';
 import { useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 
@@ -9,6 +7,7 @@ export const OrderCard = ({order}) => {
   const yesterday = new Date()
   const location = useLocation();
   const ingredients = useSelector(store => store.ingredient.ingredient)
+
 
   return(
     <div className={`${styles.card} ${location.pathname === '/profile/orders' ? styles.card_order : ''}`}>

@@ -1,0 +1,52 @@
+import styles from './order-info.module.css'
+import { useSelector } from 'react-redux'
+import AppHeader from '../app-header/app-header'
+import { useLocation } from 'react-router-dom'
+import { FormattedDate, CurrencyIcon } from "@ya.praktikum/react-developer-burger-ui-components";
+
+export const OrderInfo = () => {
+  const location = useLocation();
+  const ingredients = useSelector(store => store.ingredient.ingredient)
+  const background = location.state && location.state.background;
+  const yesterday = new Date()
+  return(
+    <>
+      {background ? null : <AppHeader />}
+      <div className={background ? null : styles.container}>
+        <p className='text text_type_main-default mr-6 pb-10'>#345678</p>
+        <div style={{display: 'flex', flexDirection: 'column', marginRight: 190}} >
+          <h1 className='text text_type_main-medium pb-3'>Death Star Starship Main бургер</h1>
+          <p className='text text_type_main-small pb-15'>Готовится</p>
+          <p className='text text_type_main-medium pb-6'>Состав:</p>
+        </div>
+        <ul className={`${styles.scroll} custom-scroll`}>
+          <div className={styles.box}>
+            {ingredients.map((ingredient) => (
+              <div className={styles.info}>
+                <div className={styles.left}>
+                  <img key={ingredient._id} className={`${styles.rounded_img}`} src={ingredient.image_mobile} alt="#" />
+                  <p className='text text_type_main-default pl-4'>{ingredient.name}</p>
+                </div>
+                <div className={styles.right}>
+                  <div className={styles.price}> 
+                    <p className='text text_type_main-default mr-2'>{ingredient.price}</p>
+                    <CurrencyIcon/>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </ul>
+      
+          <div className={styles.time}>
+            <FormattedDate className={` text text_type_main-default pl-30 text_color_inactive`} date={yesterday}/>
+            <p className='text text_type_main-default text_color_inactive mr-6'>i-GTM+3</p>
+          </div>
+          <div className={styles.fullPrice}>
+            <p className='text text_type_main-default mr-2'>15000</p>  
+            <CurrencyIcon/>
+          </div>
+      </div>
+    </>
+  )
+}

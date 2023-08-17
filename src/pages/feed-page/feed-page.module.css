@@ -29,3 +29,8 @@
 .column{
   min-width: 286px;
 }
+
+.link{
+  text-decoration: none;
+  color: white;
+}

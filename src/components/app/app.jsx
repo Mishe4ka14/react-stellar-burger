@@ -16,6 +16,7 @@ import { ErrorPage } from '../../pages/404-page/404-page';
 import { ProfileOrders } from '../../pages/profile-orders/profile-orders';
 import { Profile } from '../../pages/profile/profile';
 import { FeedPage } from '../../pages/feed-page/feed-page';
+import { OrderInfo } from '../order-info/order-info';
 
 function App() {
 
@@ -48,6 +49,8 @@ function App() {
 
         <Route path='/ingredients/:ingredientId'
                element={<IngredientDetails />} />
+
+        <Route path='feed/:id' element={<OrderInfo/>}/>        
         <Route path='*' element={<ErrorPage/>} />       
       </Routes>
 
@@ -61,6 +64,15 @@ function App() {
                 </Modal>
             }
           />
+
+          <Route
+            path='/feed/:id'
+            element={
+                <Modal onClose={handleModalClose}>
+                  <OrderInfo />
+                </Modal>
+            }
+          />        
         </Routes>
       )}
     </>

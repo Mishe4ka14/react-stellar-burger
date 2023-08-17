@@ -1,19 +1,25 @@
 import styles from './feed-page.module.css'
 import AppHeader from "../../components/app-header/app-header";
 import { OrderCard } from '../../components/order-card/order-card';
+import { Link, useLocation } from 'react-router-dom';
 
 export const FeedPage = () => {
+  const location = useLocation();
   return(
     <>
       <AppHeader/>
       <h1 className={`text text_type_main-large mt-10 mb-6 ${styles.title}`}>Лента заказов</h1>
       <div className={styles.page}>
         <ul className={`${styles.scroll} custom-scroll`}>
-          <OrderCard/>
-          <OrderCard/>
-          <OrderCard/>
-          <OrderCard/>
-          <OrderCard/>
+          <Link to='/feed/:id' className={styles.link}
+          // state={{ background: location }}
+          >
+            <OrderCard/>
+          </Link>
+            <OrderCard/>
+            <OrderCard/>
+            <OrderCard/>
+            <OrderCard/>
         </ul>
         <div>
           <div className={`mb-15 ${styles.box}`}>

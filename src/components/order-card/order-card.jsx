@@ -3,20 +3,15 @@ import { FormattedDate, CurrencyIcon } from "@ya.praktikum/react-developer-burge
 import { useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 import {useState, useEffect, } from 'react'
-import { getIngredients } from '../../services/actions/ingredients';
-import { useDispatch } from 'react-redux';
 import React from 'react'
 
 export const OrderCard = ({order}) => {
-  const yesterday = new Date()
   const location = useLocation();
-  const dispatch = useDispatch();
 
   const ingredients = useSelector(store => store.ingredient.ingredient)
 
   const [orderIngredients, setOrderIngredients] = useState([]);
   const [orderPrice, setOrderPrice] = useState([]);
-  // console.log(ingredients)
 
   //отбираем ингредиенты для каждого заказа
   useEffect(() => {

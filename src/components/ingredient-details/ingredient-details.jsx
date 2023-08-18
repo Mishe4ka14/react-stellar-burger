@@ -1,4 +1,4 @@
-import {React, useState, useEffect} from 'react'
+import { useState, useEffect} from 'react'
 import styles from './ingredient-details.module.css'
 import { useLocation } from 'react-router-dom';
 import { getIngredientsRequest } from '../../utils/burger-api';

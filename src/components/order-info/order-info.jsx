@@ -5,17 +5,14 @@ import { useLocation } from 'react-router-dom'
 import { FormattedDate, CurrencyIcon } from "@ya.praktikum/react-developer-burger-ui-components";
 import {useState, useEffect, } from 'react'
 import { getOrder } from '../../utils/burger-api';
-import { useDispatch } from 'react-redux';
-import { getIngredients } from '../../services/actions/ingredients';
 import React from 'react';
 
 export const OrderInfo = () => {
 
-  const dispatch = useDispatch();
   const location = useLocation();
   const ingredients = useSelector(store => store.ingredient.ingredient)
   const background = location.state && location.state.background;
-  const yesterday = new Date()
+  
   const [order, setOrder] = useState({});
   const [orderIngredients, setOrderIngredients] = useState([]);
   const [total, setTotal] = useState('');
@@ -73,11 +70,11 @@ export const OrderInfo = () => {
         </ul>
         <div className={styles.bottom}>
           <div className={styles.time}>
-            <FormattedDate className={` text text_type_main-default mr-4 text_color_inactive`} date={yesterday}/>
+            <FormattedDate className={` text text_type_main-default mr-4 text_color_inactive`} date={new Date(order.createdAt)}/>
             <p className={`text text_type_main-default text_color_inactive mr-6 ${styles.gtm} `}>i-GTM+3</p>
           </div>
           <div className={styles.fullPrice}>
-            <p className='text text_type_main-default mr-2'>{total}</p>  
+            <p className='text text_type_main-default ml-2'>{total}</p>  
             <CurrencyIcon/>
           </div>          
         </div>

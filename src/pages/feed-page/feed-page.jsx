@@ -2,21 +2,15 @@ import styles from './feed-page.module.css'
 import AppHeader from "../../components/app-header/app-header";
 import { OrderCard } from '../../components/order-card/order-card';
 import { Link, useLocation } from 'react-router-dom';
-import { OrderInfo } from '../../components/order-info/order-info';
-import {React, useEffect, useState } from 'react';
-import { useDispatch, useSelector, useStore } from 'react-redux';
-import { connect, disconnect, wsConnecting, wsMessage } from '../../services/actions/feed';
+import {useEffect} from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { connect, disconnect } from '../../services/actions/feed';
 import { WSS_API } from '../../utils/burger-api';
-import { getIngredients } from '../../services/actions/ingredients';
 
 export const FeedPage = () => {
   const location = useLocation();
   const dispatch = useDispatch(); 
   const feed = useSelector(store => store.feed)
-
-  //   useEffect(() => {
-  //   dispatch(getIngredients());
-  // }, [])
 
   useEffect(() => {
   dispatch(connect(`${WSS_API}/all`))

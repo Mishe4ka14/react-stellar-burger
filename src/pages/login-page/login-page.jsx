@@ -6,7 +6,6 @@ import { useInputHandlers } from '../../hooks/use-input';
 import { useDispatch } from 'react-redux';
 import { loginRequest } from '../../services/actions/auth';
 import { useNavigate } from 'react-router-dom';
-import { useSelector } from 'react-redux';
 
 export function LoginPage() {
   const dispatch = useDispatch();

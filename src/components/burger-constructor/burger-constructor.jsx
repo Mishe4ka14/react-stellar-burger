@@ -1,5 +1,5 @@
 import styles from './burger-constructor.module.css';
-import { ConstructorElement, DragIcon, Button, CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components';
+import { ConstructorElement, Button, CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 import { useEffect, useState, useCallback } from 'react';
 import { getOrder } from '../../services/actions/constructor';
 import { useSelector, useDispatch } from 'react-redux';
@@ -22,7 +22,6 @@ const BurgerConstructor = () => {
   const { constructor, bun } = useSelector((store) => store.ingredient);
   const store = useSelector((store) => store)
   const { modalType } = useSelector((store) => store.modal);
-  const user = useSelector((store) => store.auth)
 
   const [isLoading, setIsLoading] = useState(false);
 

@@ -2,15 +2,13 @@ import Ingredient from "../ingredient/ingredient";
 import styles from "./ingredient-list.module.css"
 import PropTypes from 'prop-types';
 import { ingredientPropType } from "../../utils/prop-types";
-import { useDispatch, useSelector } from "react-redux";
-import {MODAL_INGREDIENT, openIngredientModal } from "../../services/actions/modal";
-import IngredientDetails from "../ingredient-details/ingredient-details";
-import Modal from "../modal/modal";
+import { useDispatch } from "react-redux";
+import { openIngredientModal } from "../../services/actions/modal";
 
 const IngredientList = ({ filter }) => {
 
   const dispatch = useDispatch();
-  const {modalType} = useSelector(store => store.modal)
+
   return (
     <div className={styles.box}>
       {filter.map((ingredient) => (

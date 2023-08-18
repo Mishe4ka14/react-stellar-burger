@@ -1,4 +1,5 @@
 const NORMA_API = 'https://norma.nomoreparties.space/api'
+export const WSS_API = 'wss://norma.nomoreparties.space/orders'
 
 const checkResponse = (res) => {
   return res.ok ? res.json() : res.json().then((err) => Promise.reject(err));

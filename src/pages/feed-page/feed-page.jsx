@@ -3,9 +3,25 @@ import AppHeader from "../../components/app-header/app-header";
 import { OrderCard } from '../../components/order-card/order-card';
 import { Link, useLocation } from 'react-router-dom';
 import { OrderInfo } from '../../components/order-info/order-info';
+import {React, useEffect, useState } from 'react';
+import { useDispatch, useStore } from 'react-redux';
+import { connect, disconnect, wsConnecting, wsMessage } from '../../services/actions/feed';
+import { WSS_API } from '../../utils/burger-api';
 
 export const FeedPage = () => {
   const location = useLocation();
+  const dispatch = useDispatch(); 
+  const feed = useStore(store => store.feed)
+  const [orders, setOrders] = useState([])
+
+  useEffect(() => {
+  const res = dispatch(connect(`${WSS_API}/all`))
+    // dispatch(wsMessage(`${WSS_API}/all`))
+setOrders(res)
+    return dispatch(disconnect)
+  }, [])
+  console.log(orders)
+  
   return(
     <>
       <AppHeader/>

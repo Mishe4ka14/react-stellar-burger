@@ -4,23 +4,24 @@ import { OrderCard } from '../../components/order-card/order-card';
 import { Link, useLocation } from 'react-router-dom';
 import { OrderInfo } from '../../components/order-info/order-info';
 import {React, useEffect, useState } from 'react';
-import { useDispatch, useStore } from 'react-redux';
+import { useDispatch, useSelector, useStore } from 'react-redux';
 import { connect, disconnect, wsConnecting, wsMessage } from '../../services/actions/feed';
 import { WSS_API } from '../../utils/burger-api';
 
 export const FeedPage = () => {
   const location = useLocation();
   const dispatch = useDispatch(); 
-  const feed = useStore(store => store.feed)
-  const [orders, setOrders] = useState([])
+  const feed = useSelector(store => store.feed)
+  // const [orders, setOrders] = useState([]);
 
   useEffect(() => {
-  const res = dispatch(connect(`${WSS_API}/all`))
-    // dispatch(wsMessage(`${WSS_API}/all`))
-setOrders(res)
-    return dispatch(disconnect)
-  }, [])
-  console.log(orders)
+  dispatch(connect(`${WSS_API}/all`))
+  return () => {
+    dispatch(disconnect());
+  };
+}, []);
+
+console.log(feed.message)
   
   return(
     <>
@@ -54,7 +55,7 @@ setOrders(res)
             </div>
           </div>
         <h2 className="text text_type_main-medium ml-15">Выполено за все время:</h2>
-        <p className="text text_type_digits-large ml-15">510</p>
+        <p className="text text_type_digits-large ml-15">{feed.total}</p>
         <h2 className="text text_type_main-medium ml-15 mt-15">Выполено сегодня:</h2>
         <p className="text text_type_digits-large ml-15">322</p>
         </div>

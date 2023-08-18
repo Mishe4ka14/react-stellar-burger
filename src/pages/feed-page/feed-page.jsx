@@ -33,7 +33,7 @@ export const FeedPage = () => {
       <div className={styles.page}>
         <ul className={`${styles.scroll} custom-scroll`}>
           {feed.message.map((order) => (
-          <Link to='/feed/:id' className={styles.link} state={{ background: location }}>
+          <Link to={`/feed/${order.number}`} className={styles.link} state={{ background: location }} key={order._id}>
             <OrderCard order={order} key={order._id}/>
           </Link>
             ))} 

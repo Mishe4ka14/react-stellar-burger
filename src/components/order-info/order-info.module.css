@@ -2,10 +2,11 @@
   display: flex;
   flex-direction: column;
   align-self:center;
-  align-items:center;
+  justify-content: center;
   margin-top: 100px;
   position: relative;
   z-index: 1000;
+  margin-left: 32%;
 }
 
 .scroll {
@@ -67,12 +68,7 @@
 .time{
   display: flex;
   align-items:center;
-  /* position: absolute;
-  bottom: 1px;
-  right: 210px; */
   z-index: 1000;
-  /* max-width: 300px; */
-  /* padding-right: 40px; */
 }
 
 .fullPrice{
@@ -94,10 +90,14 @@
   display: flex;
   flex-direction: column;
   align-self:center;
-  align-items:center;
   position: relative;
+  margin-left: 40px;
 }
 
 .gtm{
   margin-right: 300px;
+}
+
+.number{
+  margin-left: 22%;
 }

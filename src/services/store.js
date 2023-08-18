@@ -19,7 +19,7 @@ import {
   wsError as orderWsError, 
   wsMessage as orderWsMessage, 
   wsOpen as orderWsOpen
-} from './actions/feed';
+} from './actions/orders';
 
 const feedMiddleware = socketMiddleware({
   wsConnect: feedConnect,

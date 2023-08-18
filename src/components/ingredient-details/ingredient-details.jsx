@@ -7,7 +7,6 @@ import AppHeader from '../app-header/app-header';
 
 const IngredientDetails = () => {
   const { ingredientId } = useParams(); 
-  // const { modalProps } = useSelector(store => store.modal)
 
   const location = useLocation();
   const background = location.state && location.state.background;

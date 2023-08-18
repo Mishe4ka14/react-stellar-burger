@@ -7,3 +7,8 @@
     width: 800px;
     overflow: auto;
 }
+
+.link{
+    text-decoration: none;
+    color: white;
+}

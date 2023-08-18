@@ -14,4 +14,5 @@
   position: relative;
   top: 60px;
   left: 650px;
+  z-index: 999;
 }

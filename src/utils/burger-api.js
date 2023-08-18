@@ -106,6 +106,17 @@ export const forgotPasswordRequest = (email) => {
   }).then(checkResponse)
 }
 
+//запрос получания заказа
+export const getOrder = (number) => {
+  return fetch(`${NORMA_API}/orders/${number}`, {
+    method: "GET",
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  }).then(checkResponse)
+}
+
+
 //запрос на изменение пароля
 export const resetPasswordRequest = (password, token) => {
   return fetch(`${NORMA_API}/password-reset/reset`, {

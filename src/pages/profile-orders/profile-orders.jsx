@@ -19,7 +19,9 @@ export const ProfileOrders = () => {
     const match = token.match(tokenPattern);
     const extractedToken = match ? match[1] : null; 
     dispatch(connect(`${WSS_API}?token=${extractedToken}`))
-    return dispatch(disconnect)
+    return () => {
+      dispatch(disconnect());
+    };
   }, [])
 
 

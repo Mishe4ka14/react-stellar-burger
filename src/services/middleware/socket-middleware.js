@@ -17,8 +17,10 @@ export const socketMiddleware = (wsActions) => {
       } = wsActions;
 
       if (type === wsConnect.type) {
+        if(!socket){
         socket = new WebSocket(action.payload);
         dispatch(wsConnecting());
+        }
       }
 
       if (socket) {

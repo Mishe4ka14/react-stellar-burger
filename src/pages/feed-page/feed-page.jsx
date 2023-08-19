@@ -10,7 +10,9 @@ import { WSS_API } from '../../utils/burger-api';
 export const FeedPage = () => {
   const location = useLocation();
   const dispatch = useDispatch(); 
-  const feed = useSelector(store => store.feed)
+  const message = useSelector(store => store.feed.message)
+  const total = useSelector(store => store.feed.total)
+  const totalToday = useSelector(store => store.feed.totalToday)
 
   useEffect(() => {
   dispatch(connect(`${WSS_API}/all`))
@@ -26,7 +28,7 @@ export const FeedPage = () => {
       <h1 className={`text text_type_main-large mt-10 mb-6 ${styles.title}`}>Лента заказов</h1>
       <div className={styles.page}>
         <ul className={`${styles.scroll} custom-scroll`}>
-          {feed.message.map((order) => (
+          {message.map((order) => (
           <Link to={`/feed/${order.number}`} className={styles.link} state={{ background: location }} key={order._id}>
             <OrderCard order={order} key={order._id}/>
           </Link>
@@ -40,21 +42,21 @@ export const FeedPage = () => {
           <div style={{display: 'flex'}}>
             <div className={`mb-15 ${styles.box}`}>
               <div className={styles.column}>
-                {feed.message.filter(order => order.status === 'done').slice(0, 30).map((order) => ( 
+                {message.filter(order => order.status === 'done').slice(0, 30).map((order) => ( 
                   <p className={`text text_type_main-medium pb-2 ${styles.numbers}`} key={order._id}>{order.number}</p>
                 ))}
               </div>
             </div>
               <div className={styles.column}>
-                {feed.message.filter(order => order.status !== 'done').slice(0, 30).map((order) => ( 
+                {message.filter(order => order.status !== 'done').slice(0, 30).map((order) => ( 
                   <p className={`text text_type_main-medium pb-2 ${styles.numbers}`} key={order._id} style={{color: 'white'}}>{order.number}</p>
                 ))}
               </div>
           </div>
           <h2 className="text text_type_main-medium ml-15">Выполено за все время:</h2>
-          <p className="text text_type_digits-large ml-15">{feed.total}</p>
+          <p className="text text_type_digits-large ml-15">{total}</p>
           <h2 className="text text_type_main-medium ml-15 mt-5">Выполено сегодня:</h2>
-          <p className="text text_type_digits-large ml-15">{feed.totalToday}</p>
+          <p className="text text_type_digits-large ml-15">{totalToday}</p>
         </div>
       </div>
     </>

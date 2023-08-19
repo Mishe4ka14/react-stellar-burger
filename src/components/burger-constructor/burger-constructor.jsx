@@ -20,29 +20,39 @@ const BurgerConstructor = () => {
   const dispatch = useDispatch();
   
   const { constructor, bun } = useSelector((store) => store.ingredient);
-  const store = useSelector((store) => store)
+  const user = useSelector((store) => store.auth.user)
   const { modalType } = useSelector((store) => store.modal);
 
   const [isLoading, setIsLoading] = useState(false);
 
+  const handleModalClose = () => {
+    navigate(-1);
+  };
+
   const submitOrder = () => {
     const noBuns = constructor.filter(item => item.type !== 'bun');
     const ids = [bun?._id, ...noBuns.map(item => item._id)];
+    
     if (ids.length > 0) {
-      if (store.auth.user) {
+      if (user) {
         setIsLoading(true); // Показываем прелоадер перед запросом
         dispatch(getOrder(ids))
           .catch(error => {
             console.log(`Error: ${error}`);
-          })
-          .finally(() => {
-            setIsLoading(false); // Скрываем прелоадер после получения ответа
           });
       } else {
         navigate('/login');
       }
     }
   };
+  
+  useEffect(() => {
+    let isMounted = true;
+  
+    return () => {
+      isMounted = false;
+    };
+  }, []);
   
   const [price, setPrice] = useState(0);
   
@@ -106,7 +116,7 @@ const BurgerConstructor = () => {
         </div>
       </div>
       {modalType === MODAL_ORDER && (
-        <Modal>
+        <Modal onClose={handleModalClose}>
           <OrderModal />
         </Modal>
       )}

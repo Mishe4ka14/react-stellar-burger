@@ -11,8 +11,7 @@ import { useSelector } from 'react-redux';
 export function RegistrationPage() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const store = useSelector(store => store);
-  const user = useSelector(store => store.auth);
+  const registerFailed = useSelector(store => store.auth.registerFailed);
 
   const  {values, handleInputChange} = useInputHandlers({
     email: '', password: '', name: ''
@@ -22,8 +21,7 @@ export function RegistrationPage() {
     e.preventDefault();
     if(values.email.length > 0 || values.name.length > 0 || values.password.length > 0){
       await dispatch(registerRequest(values.email, values.name, values.password))
-      console.log(user)
-      if (!store.auth.registerFailed) {
+      if (!registerFailed) {
         navigate('/');
       }
     }

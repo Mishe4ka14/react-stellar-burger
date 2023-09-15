@@ -3,20 +3,11 @@ import { Tab, } from '@ya.praktikum/react-developer-burger-ui-components'
 import React from 'react'
 import IngredientList from '../ingredient-list/ingredient-list'
 import { useEffect } from 'react'
-import { getIngredients } from '../../services/actions/ingredients';
-import { useDispatch, useSelector } from 'react-redux';
+import {  useSelector } from 'react-redux';
 
 const BurgerIngredients = () => { 
-
-  const dispatch = useDispatch();
   
-  useEffect(() => {
-    dispatch(getIngredients());
-  }, [])
-  
-
   const {ingredient} = useSelector(store => store.ingredient)
-  
   const data = ingredient;
   const buns = data.filter((ingredient) => ingredient.type === 'bun');
   const sauces = data.filter((ingredient) => ingredient.type === 'sauce');

@@ -2,8 +2,13 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  /* align-items:center; */
   margin-top: 7%;
+  margin-left: 15%;
+}
+
+.container_orders{
+  margin: 0;
+  margin-top: 3%;
   margin-left: 15%;
 }
 
@@ -17,7 +22,13 @@
   flex-direction: column;
   align-self: center;
   justify-content: center;
-  /* margin-left: 10%; */
+  max-width: 400px;
+}
+
+.nav_orders{
+  display: flex;
+  flex-direction: column;
+  margin-top: 72px;
   max-width: 400px;
 }
 

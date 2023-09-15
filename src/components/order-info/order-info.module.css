@@ -1,0 +1,103 @@
+.container{
+  display: flex;
+  flex-direction: column;
+  align-self:center;
+  justify-content: center;
+  margin-top: 100px;
+  position: relative;
+  z-index: 1000;
+  margin-left: 32%;
+}
+
+.scroll {
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  max-height: 27vh;
+  width: 640px;
+  overflow: auto;
+  z-index: 1000;
+}
+
+.box{
+  display: flex;
+  flex-direction: column;
+  z-index: 1000;
+}
+
+.info{
+  display: flex;
+  align-items:center;
+  justify-content:space-between;
+  margin-bottom: 16px;
+  z-index: 1000;
+}
+
+.rounded_img {
+  width: 50px; 
+  height: 50px; 
+  border-radius: 50%; 
+  overflow: hidden; 
+  position: relative;
+  border: 2px solid purple;
+  object-fit: cover; 
+  background-color: #1C1C21;
+  z-index: 1000;
+}
+
+.price{
+  display: flex;
+  align-items: center;
+  margin-right: 24px;
+  z-index: 1000;
+}
+
+.left{
+  display: flex;
+  align-items: center;
+  z-index: 1000;
+}
+
+.right{
+  display: flex;
+  align-items: center;
+  z-index: 1000;
+}
+
+.time{
+  display: flex;
+  align-items:center;
+  z-index: 1000;
+}
+
+.fullPrice{
+  display: flex;
+  align-items: center;
+  z-index: 999;
+}
+
+.bottom{
+  display: flex;
+  position: relative;
+  justify-content: space-between;
+  margin-top: 30px;
+  margin-bottom: 10px;
+  max-width: 600px;
+}
+
+.modal{
+  display: flex;
+  flex-direction: column;
+  align-self:center;
+  position: relative;
+  margin-left: 40px;
+}
+
+.gtm{
+  margin-right: 300px;
+}
+
+.number{
+  margin-left: 22%;
+}

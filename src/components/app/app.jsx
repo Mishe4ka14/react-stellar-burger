@@ -15,6 +15,9 @@ import { checkUserAuth } from '../../services/actions/auth';
 import { ErrorPage } from '../../pages/404-page/404-page';
 import { ProfileOrders } from '../../pages/profile-orders/profile-orders';
 import { Profile } from '../../pages/profile/profile';
+import { FeedPage } from '../../pages/feed-page/feed-page';
+import { OrderInfo } from '../order-info/order-info';
+import { getIngredients } from '../../services/actions/ingredients';
 
 function App() {
 
@@ -31,6 +34,10 @@ function App() {
     dispatch(checkUserAuth());
   }, [])
 
+  useEffect(() => {
+    dispatch(getIngredients());
+  }, [])
+
   return (
     <>
       <Routes location={background || location}>
@@ -43,9 +50,13 @@ function App() {
           <Route path="/profile" element={<OnlyAuth component={<Profile />} />}/>
           <Route path="/profile/orders" element={<OnlyAuth component={<ProfileOrders />} />}/>
         </Route>  
+        <Route path="/feed" element={<FeedPage/>}/>
 
         <Route path='/ingredients/:ingredientId'
                element={<IngredientDetails />} />
+
+        <Route path='profile/orders/:id' element={<OrderInfo/>}/>        
+        <Route path='feed/:id' element={<OrderInfo/>}/>        
         <Route path='*' element={<ErrorPage/>} />       
       </Routes>
 
@@ -59,6 +70,24 @@ function App() {
                 </Modal>
             }
           />
+
+          <Route
+            path='/feed/:id'
+            element={
+                <Modal onClose={handleModalClose}>
+                  <OrderInfo />
+                </Modal>
+            }
+          />        
+
+            <Route
+            path='/profile/orders/:id'
+            element={
+                <Modal onClose={handleModalClose}>
+                  <OrderInfo />
+                </Modal>
+            }
+          />        
         </Routes>
       )}
     </>

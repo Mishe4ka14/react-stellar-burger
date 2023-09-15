@@ -1,4 +1,4 @@
-import {React, useState, useEffect} from 'react'
+import { useState, useEffect} from 'react'
 import styles from './ingredient-details.module.css'
 import { useLocation } from 'react-router-dom';
 import { getIngredientsRequest } from '../../utils/burger-api';
@@ -7,7 +7,6 @@ import AppHeader from '../app-header/app-header';
 
 const IngredientDetails = () => {
   const { ingredientId } = useParams(); 
-  // const { modalProps } = useSelector(store => store.modal)
 
   const location = useLocation();
   const background = location.state && location.state.background;

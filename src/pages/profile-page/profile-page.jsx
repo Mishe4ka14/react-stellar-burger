@@ -18,9 +18,9 @@ export function ProfilePage() {
   return(
     <>
       <AppHeader/>
-      <div className={styles.container}>
+      <div className={location.pathname === '/profile' ? styles.container : styles.container_orders}>
         <div className={styles.box}>
-          <nav className={styles.nav}>
+          <nav className={location.pathname === '/profile' ? styles.nav : styles.nav_orders}>
             <Link to='/profile' className={`text text_type_main-medium mt-6 mb-6  ${location.pathname === '/profile' ? styles.link : styles.inactive }`}>Профиль</Link>
             <Link to='/profile/orders' className={`text text_type_main-medium text_color_inactive mt-6 mb-6 ${location.pathname === '/profile/orders' ? styles.link : styles.inactive } `}>История заказов</Link>
             <a onClick={handleLogout} className={`text text_type_main-medium text_color_inactive mt-6 mb-6 ${ styles.Link }`}>Выход</a>

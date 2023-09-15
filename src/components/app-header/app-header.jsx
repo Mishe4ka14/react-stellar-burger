@@ -10,9 +10,9 @@ const AppHeader = () => {
         <BurgerIcon  type={location.pathname === '/' ? 'primary': 'secondary'}/>
         <p className={`text text_type_main-default mr-5 ml-2  ${location.pathname === '/' ? '': 'text_color_inactive'}`}>Конструктор</p>
       </Link>  
-      <Link className={styles.link}>
-        <ListIcon type="secondary"/>
-        <p className='text text_type_main-default text_color_inactive mr-5 ml-2'>Лента заказов</p>
+      <Link to='/feed' className={styles.link}>
+        <ListIcon type={location.pathname === '/feed' ? 'primary': 'secondary'}/>
+        <p className={`text text_type_main-default mr-5 ml-2  ${location.pathname === '/feed' ? '': 'text_color_inactive'}`}>Лента заказов</p>
       </Link>
       <div className={styles.logo}>
         <Logo/>

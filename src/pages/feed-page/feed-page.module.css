@@ -1,0 +1,44 @@
+.page{
+  display: flex;
+  margin-left: 270px;
+}
+
+.title{
+  margin-left: 270px;
+}
+
+.scroll {
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  max-height: 76vh;
+  width: 600px;
+  overflow: auto;
+}
+
+.box {
+  display: flex;
+  margin-left: 60px;
+}
+
+.numbers{
+  color:aqua;
+}
+
+.column{
+  min-width: 286px;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  max-height: 400px;
+}
+
+.link{
+  text-decoration: none;
+  color: white;
+}
+
+.done{
+  max-height: 500px;
+}

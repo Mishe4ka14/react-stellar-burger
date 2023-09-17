@@ -4,13 +4,19 @@ import { Action, ActionCreator } from 'redux';
 import { store } from "../store";
 import { TIngredientActions } from "../actions/ingredients";
 import { TConstructorActions } from "../actions/constructor";
+import { TModalActions } from "../actions/modal";
+import { TFeedActions } from "../actions/feed";
+import { TAuthActions } from "../actions/auth";
 
 export type RootState = ReturnType<typeof rootReducer>
 
 // Типизация всех экшенов 
 export type TAppActions = 
 | TIngredientActions
-| TConstructorActions;
+| TConstructorActions
+| TModalActions
+| TFeedActions
+| TAuthActions;
 
 
 // Типизация thunk

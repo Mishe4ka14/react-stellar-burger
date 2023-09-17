@@ -43,12 +43,12 @@ export const getIngredients:AppThunk  = ()=> {
           });
         }
       })
-      // .catch((error) => {
-      //   dispatch({
-      //     type: GET_INGREDIENTS_FAILED,
-      //     payload: error.message,
-      //   });
-      // });
+      .catch((error) => {
+        dispatch({
+          type: GET_INGREDIENTS_FAILED,
+          payload: error.message,
+        });
+      });
   };
 };
 

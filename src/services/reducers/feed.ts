@@ -1,8 +1,17 @@
-import { createSlice, createReducer } from '@reduxjs/toolkit'
+import { createReducer } from '@reduxjs/toolkit'
 import { WebsocketStatus } from "../../utils/ws-status";
-import { wsConnecting, wsClose, wsError, wsMessage, wsOpen } from "../actions/orders";
+import { wsConnecting, wsClose, wsError, wsMessage, wsOpen } from "../actions/feed";
+import { TOrder } from '../types/data';
 
-const initialState = {
+type TFeedState = {
+  status: string;
+  message: Array<TOrder>;
+  total: null | number;
+  totalToday: null | number;
+  connectingError: string;
+}
+
+const initialState: TFeedState = {
   status: WebsocketStatus.OFFLINE,
   message: [],
   total: null,
@@ -10,7 +19,7 @@ const initialState = {
   connectingError: '',
 }
 
-export const ordersReducer = createReducer(initialState, (builder) => {
+export const feedReducer = createReducer(initialState, (builder) => {
   builder
     .addCase(wsConnecting, state => {
           state.status = WebsocketStatus.CONNECTING;

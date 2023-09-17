@@ -6,3 +6,4 @@ import {
 import { AppDispatch, AppThunk, RootState } from '../services/types/index';
 
 export const useDispatch = () => dispatchHook<AppDispatch | AppThunk>(); 
+export const useSelector: TypedUseSelectorHook<RootState> = selectorHook;

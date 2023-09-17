@@ -1,6 +1,19 @@
-import { LOGIN_REQUEST, LOGIN_FAILED, LOGIN_SUCCESS, REGISTER_FAILED, REGISTER_SUCCESS, REGISTER_REQUEST, LOGOUT_FAILED, LOGOUT_REQUEST, LOGOUT_SUCCESS, SET_AUTH_CHECKED, SET_USER, } from "../actions/auth"
+import { LOGIN_REQUEST, LOGIN_FAILED, LOGIN_SUCCESS, REGISTER_FAILED, REGISTER_SUCCESS, REGISTER_REQUEST, LOGOUT_FAILED, LOGOUT_REQUEST, LOGOUT_SUCCESS, SET_AUTH_CHECKED, SET_USER, TAuthActions, } from "../actions/auth"
+import { TAppActions } from "../types";
+import { TFeed, TUser } from "../types/data";
 
-const initialState = {
+type TAuthInitialState = {
+  user: null | TUser;
+  registerRequest: boolean;
+  registerFailed: boolean;
+  loginRequest: boolean;
+  loginFailed: boolean;
+  logoutRequest: boolean;
+  logoutFailed: boolean;
+  isAuthChecked: boolean;
+}
+
+const initialState: TAuthInitialState = {
     user: null,
     registerRequest: false,
     registerFailed: false,
@@ -11,7 +24,7 @@ const initialState = {
     isAuthChecked: false,
 }
 
-export const authReducer = (store = initialState, action) => {
+export const authReducer = (store = initialState, action: TAuthActions):TAuthInitialState => {
   switch (action.type) {
     case REGISTER_REQUEST: return {
       ...store, registerRequest: true, registerFailed: false
@@ -41,11 +54,11 @@ export const authReducer = (store = initialState, action) => {
        ...store, logoutRequest: false, logoutFailed: true
     };
     case SET_AUTH_CHECKED: return {
-      ...store, isAuthChecked: action.payload
+      ...store, isAuthChecked: action.isAuthChecked
     }
     case SET_USER:
       return {
-        ...store, user: action.payload
+        ...store, user: action.user
       }
     default: return store;
   }

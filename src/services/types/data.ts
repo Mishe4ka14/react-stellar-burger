@@ -21,3 +21,14 @@ export type TOrder = {
   createdAt: string;
   _id: string
 }
+
+export type TFeed = {
+  orders: Array<TOrder>;
+  total: number;
+  totalToday: number;
+}
+
+export type TUser = {
+  email: string;
+  name: string;
+}

@@ -1,6 +1,6 @@
 import { getOrderNumber } from "../../utils/burger-api";
 import { TIngredient, TOrder } from "../types/data";
-import { openOrderModal } from "./modal";
+import { MODAL_OPEN, openOrderModal } from "./modal";
 import { AppDispatch, AppThunk } from "../types";
 
 export const GET_CONSTRUCTOR_REQUEST:'GET_CONSTRUCTOR_REQUEST' = 'GET_CONSTRUCTOR_REQUEST';
@@ -75,9 +75,8 @@ export const getOrder:AppThunk = (ID: Array<string>) => {
           if (res && res.success) {
             dispatch({
               type: GET_CONSTRUCTOR_SUCCESS,
-              order: res.order.number,
+              order: res.order,
             });
-            //@ts-ignore
             dispatch(openOrderModal(res.order));
           } else {
             dispatch({

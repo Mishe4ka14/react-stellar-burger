@@ -10,7 +10,7 @@ type TIngredientState = {
   constructor: Array<TIngredient>;
   constructorRequest: boolean;
   constructorFailed: boolean;
-  order: TOrder
+  order: TOrder | null
 }
 
 const initialState: TIngredientState = {
@@ -21,14 +21,7 @@ const initialState: TIngredientState = {
   constructor: [],
   constructorRequest: false,
   constructorFailed: false,
-  order: {
-    name: "",
-    ingredients: [],
-    status: "",
-    number: 0,
-    createdAt: "",
-    _id: ""
-  }
+  order: null
 }
 
 //редьюсер в котором описываем все экшены

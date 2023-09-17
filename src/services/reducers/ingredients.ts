@@ -1,7 +1,19 @@
-import {GET_INGREDIENTS_FAILED, GET_INGREDIENTS_REQUEST, GET_INGREDIENTS_SUCCESS} from '../actions/ingredients.js'
-import { GET_CONSTRUCTOR_REQUEST, GET_CONSTRUCTOR_SUCCESS, GET_CONSTRUCTOR_FAILED, ADD_INGREDIENT, REMOVE_INGREDIENT, CHANGE_INGREDIENT } from "../actions/constructor"
+import {GET_INGREDIENTS_FAILED, GET_INGREDIENTS_REQUEST, GET_INGREDIENTS_SUCCESS, TIngredientActions} from '../actions/ingredients.js'
+import { GET_CONSTRUCTOR_REQUEST, GET_CONSTRUCTOR_SUCCESS, GET_CONSTRUCTOR_FAILED, ADD_INGREDIENT, REMOVE_INGREDIENT, CHANGE_INGREDIENT, TConstructorActions } from "../actions/constructor.js"
+import { TIngredient, TOrder } from '../types/data.js'
 
-const initialState = {
+type TIngredientState = {
+  ingredient: Array<TIngredient>;
+  ingredientsRequest: boolean;
+  ingredientsFailed: boolean;
+  bun: TIngredient | null;
+  constructor: Array<TIngredient>;
+  constructorRequest: boolean;
+  constructorFailed: boolean;
+  order: TOrder
+}
+
+const initialState: TIngredientState = {
   ingredient: [],
   ingredientsRequest: false,
   ingredientsFailed: false,
@@ -10,12 +22,17 @@ const initialState = {
   constructorRequest: false,
   constructorFailed: false,
   order: {
-    number: null
-  },  
+    name: "",
+    ingredients: [],
+    status: "",
+    number: 0,
+    createdAt: "",
+    _id: ""
+  }
 }
 
 //редьюсер в котором описываем все экшены
-export const ingredientsReducer = (store = initialState, action) => {
+export const ingredientsReducer = (store = initialState, action: TIngredientActions | TConstructorActions):TIngredientState => {
   switch (action.type) {
     case GET_INGREDIENTS_REQUEST : {
       return {...store, ingredientsRequest: true, ingredientsFailed: false}
@@ -30,7 +47,7 @@ export const ingredientsReducer = (store = initialState, action) => {
       return {...store, constructorRequest: true, constructorFailed: false}
     }
     case GET_CONSTRUCTOR_SUCCESS : {
-      return {...store, constructorRequest: false, constructorFailed: false, order: {number: action.order}, constructor: [], bun: null}
+      return {...store, constructorRequest: false, constructorFailed: false, order: action.order, constructor: [], bun: null}
     }
     case GET_CONSTRUCTOR_FAILED : {
       return {...store, constructorRequest: false, constructorFailed: true}

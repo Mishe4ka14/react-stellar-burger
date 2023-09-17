@@ -1,4 +1,5 @@
 import { getIngredientsRequest } from "../../utils/burger-api";
+import { AppDispatch, AppThunk } from "../types";
 import { TIngredient } from "../types/data";
 
 export const GET_INGREDIENTS_REQUEST:'GET_INGREDIENTS_REQUEST'  = 'GET_INGREDIENTS_REQUEST';
@@ -27,8 +28,8 @@ export type TIngredientActions =
   | IGetIngredientSuccessAction;
 
 
-export const getIngredients = () => {
-  return function (dispatch) {
+export const getIngredients:AppThunk  = ()=> {
+  return (dispatch:AppDispatch) => {
     dispatch({
       type: GET_INGREDIENTS_REQUEST,
     });
@@ -42,12 +43,12 @@ export const getIngredients = () => {
           });
         }
       })
-      .catch((error) => {
-        dispatch({
-          type: GET_INGREDIENTS_FAILED,
-          payload: error.message,
-        });
-      });
+      // .catch((error) => {
+      //   dispatch({
+      //     type: GET_INGREDIENTS_FAILED,
+      //     payload: error.message,
+      //   });
+      // });
   };
 };
 

@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
-import { ingredientsReducer, constructorReducer } from './ingredients';
+import { ingredientsReducer } from './ingredients';
 import { modalReducer } from './modal';
 import { authReducer } from './auth';
 import { feedReducer } from './feed';

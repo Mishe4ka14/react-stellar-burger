@@ -1,5 +1,5 @@
-import {GET_INGREDIENTS_FAILED, GET_INGREDIENTS_REQUEST, GET_INGREDIENTS_SUCCESS, TIngredientActions} from '../actions/ingredients.js'
-import { GET_CONSTRUCTOR_REQUEST, GET_CONSTRUCTOR_SUCCESS, GET_CONSTRUCTOR_FAILED, ADD_INGREDIENT, REMOVE_INGREDIENT, CHANGE_INGREDIENT, TConstructorActions } from "../actions/constructor.js"
+import {GET_INGREDIENTS_FAILED, GET_INGREDIENTS_REQUEST, GET_INGREDIENTS_SUCCESS, TIngredientActions} from '../actions/ingredients'
+import { GET_CONSTRUCTOR_REQUEST, GET_CONSTRUCTOR_SUCCESS, GET_CONSTRUCTOR_FAILED, ADD_INGREDIENT, REMOVE_INGREDIENT, CHANGE_INGREDIENT, TConstructorActions } from "../actions/constructor"
 import { TIngredient, TOrder } from '../types/data.js'
 
 type TIngredientState = {

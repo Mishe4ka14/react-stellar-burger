@@ -77,7 +77,7 @@ export type TAuthActions =
   | ISetAuthChecked;
 
 
-export const registerRequest:AppThunk = (email, password, name) => {
+export const registerRequest:AppThunk = (email:string, password:string, name:string) => {
   return (dispatch: AppDispatch) => {
     dispatch({ type: REGISTER_REQUEST });
     try {

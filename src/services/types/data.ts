@@ -14,12 +14,15 @@ export type TIngredient = {
 }
 
 export type TOrder = {
+  success: boolean
   name: string;
   ingredients: Array<string>;
   status: string;
   number: number;
   createdAt: string;
   _id: string
+  price: string
+  order: any
 }
 
 export type TFeed = {
@@ -32,3 +35,4 @@ export type TUser = {
   email: string;
   name: string;
 }
+

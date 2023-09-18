@@ -2,7 +2,7 @@ import { Logo, BurgerIcon, ListIcon, ProfileIcon  } from '@ya.praktikum/react-de
 import styles from './app-header.module.css'
 import { Link, useLocation } from 'react-router-dom';
 
-const AppHeader = () => {
+const AppHeader = ():JSX.Element => {
   const location = useLocation();
   return(
     <header className={styles.header}>

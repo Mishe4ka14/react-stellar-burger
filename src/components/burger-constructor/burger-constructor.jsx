@@ -33,7 +33,8 @@ const BurgerConstructor = () => {
     const noBuns = constructor.filter(item => item.type !== 'bun');
     const ids = [bun?._id, ...noBuns.map(item => item._id)];
     
-    if (ids.length > 0) {
+    if ((ids.length > 0 && ids[0] !== undefined) || (ids.length > 1 && ids[0] === undefined)) {
+      console.log(ids)
       if (user) {
         setIsLoading(true); // Показываем прелоадер перед запросом
         dispatch(getOrder(ids))

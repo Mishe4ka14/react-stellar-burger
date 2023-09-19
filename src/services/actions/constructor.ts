@@ -1,5 +1,5 @@
 import { getOrderNumber } from "../../utils/burger-api";
-import { TIngredient, TOrder } from "../types/types";
+import { TIngredient, TOrder} from "../types/types";
 import { MODAL_OPEN, openOrderModal } from "./modal";
 import { AppDispatch, AppThunk } from "../types";
 

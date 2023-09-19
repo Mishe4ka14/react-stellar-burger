@@ -4,9 +4,10 @@ import { Button, EmailInput, Input, PasswordInput } from "@ya.praktikum/react-de
 import { useInputHandlers } from '../../hooks/use-input';
 import { Link } from 'react-router-dom';
 import { registerRequest } from '../../services/actions/auth';
-import { useDispatch } from 'react-redux';
+import { useDispatch } from '../../hooks/hooks';
 import { useNavigate } from 'react-router-dom';
 import { useSelector } from '../../hooks/hooks'
+import { AppThunk } from '../../services/types';
 
 export const RegistrationPage = ():JSX.Element => {
   const dispatch = useDispatch();
@@ -20,7 +21,7 @@ export const RegistrationPage = ():JSX.Element => {
   const handleClick = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if(values.email.length > 0 || values.name.length > 0 || values.password.length > 0){
-      await dispatch(registerRequest(values.email, values.name, values.password))
+      await dispatch(registerRequest(values.email, values.name, values.password) as AppThunk)
       if (!registerFailed) {
         navigate('/');
       }

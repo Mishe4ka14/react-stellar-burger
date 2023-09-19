@@ -2,8 +2,9 @@ import styles from './profile-page.module.css'
 import AppHeader from '../../components/app-header/app-header'
 import { Link, Outlet } from 'react-router-dom';
 import { LOGOUT_SUCCESS, logoutRequest } from '../../services/actions/auth';
-import { useDispatch } from 'react-redux';
+import { useDispatch } from '../../hooks/hooks';
 import { useLocation } from 'react-router-dom';
+import { AppThunk } from '../../services/types';
 
 export const ProfilePage = ():JSX.Element => {
   const location = useLocation();
@@ -11,7 +12,7 @@ export const ProfilePage = ():JSX.Element => {
   const token = localStorage.getItem('refreshToken')
 
   const handleLogout = () => {
-    dispatch(logoutRequest(token)); 
+    dispatch(logoutRequest(token) as AppThunk); 
     dispatch({ type: LOGOUT_SUCCESS });
   }
 

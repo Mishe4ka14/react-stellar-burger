@@ -1,5 +1,6 @@
 import { addUserInfo, getUserInfo, logOutUser, loginUser, registerUser } from "../../utils/burger-api";
-import { AppDispatch, AppThunk } from "../types";
+import { AppDispatch, AppThunk, AppThunkk } from "../types";
+import { IRegisterResponse } from "../types/api";
 import { TUser } from "../types/types";
 
 export const LOGIN_REQUEST:'LOGIN_REEQUEST' = 'LOGIN_REEQUEST';
@@ -96,23 +97,23 @@ export const registerRequest:AppThunk = (email:string, password:string, name:str
     }
   }
 }
-
-export const loginRequest = (email:string, password:string) => {
+export const loginRequest = (email: string, password: string): AppThunkk<Promise<void | IRegisterResponse>> => {
   return (dispatch: AppDispatch) => {
     dispatch({ type: LOGIN_REQUEST });
-    return loginUser(email, password).then((res)=> {
-      localStorage.setItem('accessToken', res.accessToken);
-      localStorage.setItem('refreshToken', res.refreshToken);
-      dispatch({ type: LOGIN_SUCCESS});
-      dispatch(setUser(res.user));
-      dispatch(setAuthChecked(true));
-      return res;
-    })
-    .catch(error => {
-      dispatch({ type: LOGIN_FAILED, payload: error.message });
-    })
-  }
-}
+    return loginUser(email, password)
+      .then((res) => {
+        localStorage.setItem('accessToken', res.accessToken);
+        localStorage.setItem('refreshToken', res.refreshToken);
+        dispatch({ type: LOGIN_SUCCESS });
+        dispatch(setUser(res.user));
+        dispatch(setAuthChecked(true));
+        return res;
+      })
+      .catch((error) => {
+        dispatch({ type: LOGIN_FAILED, payload: error.message });
+      });
+  };
+};
 
 export const logoutRequest: AppThunk = (token:string)  => {
   return async function (dispatch: AppDispatch) {

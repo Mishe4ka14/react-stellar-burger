@@ -1,12 +1,13 @@
 import { OrderCard } from "../../components/order-card/order-card"
 import styles from './profile-orders.module.css'
 import { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
-import { connect, disconnect } from '../../services/actions/orders';
+import { useDispatch } from '../../hooks/hooks';
+import { connect } from '../../services/actions/orders';
+import {disconnect as disconnectOrders} from '../../services/actions/orders'
 import { WSS_API } from "../../utils/burger-api";
 import { useSelector } from "../../hooks/hooks";
 import { useLocation, Link } from "react-router-dom";
-import { TFeed, TOrder } from "../../services/types/types";
+
 
 export const ProfileOrders = ():JSX.Element => {
 
@@ -22,7 +23,7 @@ export const ProfileOrders = ():JSX.Element => {
     const extractedToken = match ? match[1] : null; 
     dispatch(connect(`${WSS_API}?token=${extractedToken}`))
     return () => {
-      dispatch(disconnect());
+      dispatch(disconnectOrders());
     };
   }, [])
 

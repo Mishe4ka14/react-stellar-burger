@@ -3,6 +3,7 @@ import styles from './order-details.module.css'
 import { useSelector } from '../../hooks/hooks'
 
 const OrderModal = ():JSX.Element => {
+
   const order = useSelector(store => store.ingredient.order)
 
   return(

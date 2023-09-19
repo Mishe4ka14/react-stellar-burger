@@ -1,11 +1,12 @@
 import styles from './profile.module.css'
 import { Button, EmailInput, Input, PasswordInput} from "@ya.praktikum/react-developer-burger-ui-components";
-import { useDispatch } from 'react-redux';
+import { useDispatch } from '../../hooks/hooks';
 import { useSelector } from '../../hooks/hooks';
 import { useEffect } from 'react';
 import { addInfo } from '../../services/actions/auth';
 import { getUser } from '../../services/actions/auth';
 import { useInputHandlers } from '../../hooks/use-input';
+import { AppThunk } from '../../services/types';
 
 export const Profile = ():JSX.Element => {
   const dispatch = useDispatch();
@@ -22,7 +23,7 @@ export const Profile = ():JSX.Element => {
   }
 
   useEffect(() => {
-    dispatch(getUser())
+    dispatch(getUser() as AppThunk<void>)
     if(user){
       setInfo()
     }
@@ -31,7 +32,7 @@ export const Profile = ():JSX.Element => {
 
   const handleChangeInfo = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    dispatch(addInfo(values.name, values.email, values.password))
+    dispatch(addInfo(values.name, values.email, values.password) as AppThunk)
   }
   return(
         <form className={styles.container} onSubmit={handleChangeInfo}>

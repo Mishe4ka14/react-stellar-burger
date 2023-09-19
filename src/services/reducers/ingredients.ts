@@ -2,6 +2,7 @@ import {GET_INGREDIENTS_FAILED, GET_INGREDIENTS_REQUEST, GET_INGREDIENTS_SUCCESS
 import { GET_CONSTRUCTOR_REQUEST, GET_CONSTRUCTOR_SUCCESS, GET_CONSTRUCTOR_FAILED, ADD_INGREDIENT, REMOVE_INGREDIENT, CHANGE_INGREDIENT, TConstructorActions } from "../actions/constructor"
 import { TIngredient, TOrder } from '../types/types.js'
 import { nanoid } from 'nanoid';
+import { RootState } from '../types';
 type TIngredientState = {
   ingredient: Array<TIngredient>;
   ingredientsRequest: boolean;
@@ -23,6 +24,8 @@ const initialState: TIngredientState = {
   constructorFailed: false,
   order: null
 }
+
+export const getOrderState = (store: RootState) => store.ingredient;
 
 //редьюсер в котором описываем все экшены
 export const ingredientsReducer = (store = initialState, action: TIngredientActions | TConstructorActions):TIngredientState => {

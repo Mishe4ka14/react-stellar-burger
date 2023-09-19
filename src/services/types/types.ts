@@ -14,6 +14,7 @@ export type TIngredient = {
   key?: string
 }
 
+
 export type TOrder = {
   success: boolean
   name: string;
@@ -23,7 +24,7 @@ export type TOrder = {
   createdAt: string;
   _id: string
   price: string
-  order: any
+  order: TOrder
 }
 
 export type TFeed = {

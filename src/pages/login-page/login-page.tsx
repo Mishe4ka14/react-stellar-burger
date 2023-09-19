@@ -3,9 +3,10 @@ import AppHeader from '../../components/app-header/app-header'
 import { Button, EmailInput, PasswordInput } from "@ya.praktikum/react-developer-burger-ui-components";
 import { Link } from 'react-router-dom';
 import { useInputHandlers } from '../../hooks/use-input';
-import { useDispatch } from 'react-redux'
+import { useDispatch } from '../../hooks/hooks'
 import { loginRequest } from '../../services/actions/auth';
 import { useNavigate } from 'react-router-dom';
+import { AppThunk } from '../../services/types';
 
 export const LoginPage = () => {
   const dispatch = useDispatch();

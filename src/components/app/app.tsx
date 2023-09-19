@@ -9,7 +9,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import IngredientDetails from '../ingredient-details/ingredient-details';
 import Modal from '../modal/modal';
 import { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch } from '../../hooks/hooks';
 import { OnlyAuth, OnlyUnAuth } from '../protected-route/protected-route';
 import { checkUserAuth } from '../../services/actions/auth';
 import { ErrorPage } from '../../pages/404-page/404-page';
@@ -18,6 +18,7 @@ import { Profile } from '../../pages/profile/profile';
 import { FeedPage } from '../../pages/feed-page/feed-page';
 import { OrderInfo } from '../order-info/order-info';
 import { getIngredients } from '../../services/actions/ingredients';
+import { AppThunk } from '../../services/types';
 
 const App = ():JSX.Element => {
 
@@ -31,12 +32,12 @@ const App = ():JSX.Element => {
   };
 
   useEffect(() => {
-    dispatch(checkUserAuth());
-  }, [])
+    dispatch(checkUserAuth() as AppThunk<void>); 
+  }, [dispatch]);
 
   useEffect(() => {
-    dispatch(getIngredients());
-  }, [])
+    dispatch(getIngredients() as AppThunk<void>); 
+  }, [dispatch]);
 
   return (
     <>

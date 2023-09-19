@@ -3,7 +3,7 @@ import { ConstructorElement, Button, CurrencyIcon } from '@ya.praktikum/react-de
 import { useEffect, useState, useCallback } from 'react';
 import { getOrder } from '../../services/actions/constructor';
 import { useSelector } from '../../hooks/hooks'
-import { useDispatch } from 'react-redux';
+import { useDispatch } from '../../hooks/hooks';
 import { MODAL_ORDER } from '../../services/actions/modal';
 import { useDrop } from 'react-dnd';
 import { ItemTypes } from '../../utils/constanst';
@@ -15,6 +15,7 @@ import { ConstructorItem } from '../constructor-item/constructor-item';
 import { useNavigate } from 'react-router-dom';
 import { Loader } from '../loader/loader';
 import { TIngredient } from '../../services/types/types';
+import { AppThunk } from '../../services/types';
 
 const BurgerConstructor = ():JSX.Element => {
 
@@ -37,8 +38,8 @@ const BurgerConstructor = ():JSX.Element => {
     
     if ((ids.length > 0 && ids[0] !== undefined) || (ids.length > 1 && ids[0] === undefined)) {
       if (user) {
-        setIsLoading(true); // Показываем прелоадер перед запросом
-        dispatch(getOrder(ids))
+        setIsLoading(true); 
+        dispatch(getOrder(ids)as AppThunk<void>)
       } else {
         navigate('/login');
       }

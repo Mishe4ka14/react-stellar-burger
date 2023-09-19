@@ -3,11 +3,11 @@ import AppHeader from '../../components/app-header/app-header'
 import { Button, EmailInput, PasswordInput } from "@ya.praktikum/react-developer-burger-ui-components";
 import { Link } from 'react-router-dom';
 import { useInputHandlers } from '../../hooks/use-input';
-import { useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux'
 import { loginRequest } from '../../services/actions/auth';
 import { useNavigate } from 'react-router-dom';
 
-export function LoginPage() {
+export const LoginPage = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   
@@ -15,32 +15,31 @@ export function LoginPage() {
     email: '', password: ''
   })
 
-  const handleLogin = (e) => {
-    e.preventDefault();
-    if (values.email && values.password) {
-      dispatch(loginRequest(values.email, values.password))
-        .then((res) => {
-          if (res && res.success) {
-            navigate('/');
-          }
-        })
-        .catch(err => {
-          console.log(`Error: ${err}`);
-        });
+
+const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
+  e.preventDefault();
+  if (values.email && values.password) {
+    try { 
+      await dispatch(loginRequest(values.email, values.password));
+      navigate('/');
+    } catch (error) {
+      console.error('Error:', error);
     }
-  };
+  }
+};
+
 
   return(
     <>
       <AppHeader/>
-      <div className={styles.container}>
+      <form className={styles.container} onSubmit={handleLogin}>
         <h1 className="text text_type_main-medium">Вход</h1>
-        <EmailInput type={'email'} extraClass='mt-4 mb-4' placeholder={'E-mail'} value={values.email} onChange={handleInputChange}
+        <EmailInput extraClass='mt-4 mb-4' placeholder={'E-mail'} value={values.email} onChange={handleInputChange}
         name="email"/>
-        <PasswordInput type={'password'} extraClass='mt-4 mb-4' placeholder={'Пароль'} icon={'ShowIcon'} value={values.password}
+        <PasswordInput extraClass='mt-4 mb-4' placeholder={'Пароль'} icon={'ShowIcon'} value={values.password}
         onChange={handleInputChange}
         name="password"/>
-        <Button onClick={handleLogin} htmlType="button" extraClass='mt-4 mb-20'>Войти</Button>
+        <Button htmlType="submit" extraClass='mt-4 mb-20'>Войти</Button>
         <div className={styles.box}>
           <h2 className="text text_type_main-small text_color_inactive">Вы - новый пользователь?</h2>
           <Link to='/register'>
@@ -53,7 +52,7 @@ export function LoginPage() {
             <Button htmlType="button" type="secondary" size="small">Восстановить пароль</Button>
           </Link>
         </div>
-      </div>
+      </form>
     </>
   )
 }

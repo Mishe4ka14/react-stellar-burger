@@ -1,7 +1,7 @@
 import { createAction } from "@reduxjs/toolkit";
 import { TFeed } from "../types/data";
 
-export const connect = createAction('feed/conenct');
+export const connect = createAction<string>('feed/conenct');
 export const disconnect = createAction('feed/disconnect');
 export const wsConnecting = createAction('feed/wsConnecting');
 export const wsOpen = createAction('feed/wsOpen');

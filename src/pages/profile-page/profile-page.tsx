@@ -5,7 +5,7 @@ import { LOGOUT_SUCCESS, logoutRequest } from '../../services/actions/auth';
 import { useDispatch } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 
-export function ProfilePage() {
+export const ProfilePage = ():JSX.Element => {
   const location = useLocation();
   const dispatch = useDispatch();
   const token = localStorage.getItem('refreshToken')

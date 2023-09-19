@@ -97,7 +97,7 @@ export const registerRequest:AppThunk = (email:string, password:string, name:str
   }
 }
 
-export const loginRequest:AppThunk = (email:string, password:string) => {
+export const loginRequest = (email:string, password:string) => {
   return (dispatch: AppDispatch) => {
     dispatch({ type: LOGIN_REQUEST });
     return loginUser(email, password).then((res)=> {
@@ -114,7 +114,7 @@ export const loginRequest:AppThunk = (email:string, password:string) => {
   }
 }
 
-export const logoutRequest: AppThunk = (token:string) => {
+export const logoutRequest: AppThunk = (token:string)  => {
   return async function (dispatch: AppDispatch) {
     dispatch({ type: LOGOUT_REQUEST });
     try {

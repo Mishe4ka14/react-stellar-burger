@@ -3,11 +3,11 @@ import AppHeader from "../../components/app-header/app-header";
 import { OrderCard } from '../../components/order-card/order-card';
 import { Link, useLocation } from 'react-router-dom';
 import {useEffect} from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch, useSelector } from '../../hooks/hooks'
 import { connect, disconnect } from '../../services/actions/feed';
 import { WSS_API } from '../../utils/burger-api';
 
-export const FeedPage = () => {
+export const FeedPage = ():JSX.Element => {
   const location = useLocation();
   const dispatch = useDispatch(); 
   const message = useSelector(store => store.feed.message)

@@ -8,7 +8,7 @@ import { ProfilePage } from '../../pages/profile-page/profile-page';
 import { useLocation, useNavigate } from 'react-router-dom';
 import IngredientDetails from '../ingredient-details/ingredient-details';
 import Modal from '../modal/modal';
-import {React, useEffect } from 'react';
+import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { OnlyAuth, OnlyUnAuth } from '../protected-route/protected-route';
 import { checkUserAuth } from '../../services/actions/auth';

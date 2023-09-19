@@ -1,13 +1,13 @@
 import { OrderCard } from "../../components/order-card/order-card"
 import styles from './profile-orders.module.css'
-import {React, useEffect } from 'react';
+import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { connect, disconnect } from '../../services/actions/orders';
 import { WSS_API } from "../../utils/burger-api";
-import { useSelector } from "react-redux";
+import { useSelector } from "../../hooks/hooks";
 import { useLocation, Link } from "react-router-dom";
 
-export const ProfileOrders = () => {
+export const ProfileOrders = ():JSX.Element => {
 
   const dispatch = useDispatch();
   const location = useLocation();
@@ -16,7 +16,7 @@ export const ProfileOrders = () => {
   useEffect(() => {
     const token = localStorage.getItem('accessToken');
     const tokenPattern = /Bearer\s(.+)/; 
-    const match = token.match(tokenPattern);
+    const match = token?.match(tokenPattern);
     const extractedToken = match ? match[1] : null; 
     dispatch(connect(`${WSS_API}?token=${extractedToken}`))
     return () => {

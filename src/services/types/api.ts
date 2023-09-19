@@ -11,7 +11,7 @@ export interface IOrderResponse extends IResponse {
 }
 
 export interface IOrdersResponse extends IResponse {
-  order: Array<TOrder>
+  orders: Array<TOrder>
 }
 
 export type IHeaders = HeadersInit & {

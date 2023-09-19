@@ -36,3 +36,7 @@ export type TUser = {
   name: string;
 }
 
+export type TModal = {
+  onClose(): void;
+  children: JSX.Element
+}

@@ -6,12 +6,14 @@ import { connect, disconnect } from '../../services/actions/orders';
 import { WSS_API } from "../../utils/burger-api";
 import { useSelector } from "../../hooks/hooks";
 import { useLocation, Link } from "react-router-dom";
+import { TFeed, TOrder } from "../../services/types/data";
 
 export const ProfileOrders = ():JSX.Element => {
 
   const dispatch = useDispatch();
   const location = useLocation();
   const orders = useSelector(store => store.orders) ;
+  const message = [...orders.message];
 
   useEffect(() => {
     const token = localStorage.getItem('accessToken');
@@ -27,7 +29,7 @@ export const ProfileOrders = ():JSX.Element => {
 
   return(
     <ul className={`${styles.scroll} custom-scroll`}>
-      {orders.message.toReversed().map((order) => (
+      {message.reverse().map((order) => (
         <Link to={`/profile/orders/${order.number}`} className={styles.link} state={{ background: location }} key={order._id}>
           <OrderCard order={order} key={order._id}/>
         </Link>

@@ -6,10 +6,11 @@ import ModalOverlay from '../modal-overlay/modal-overlay';
 import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
 import { closeModal } from '../../services/actions/modal';
+import { TModal } from '../../services/types/data';
 
 const modalRoot = document.getElementById('modal-root')
 
-const Modal = ({children, onClose}) => {
+const Modal = ({children, onClose}: TModal): JSX.Element => {
 
   const dispatch = useDispatch();
 
@@ -20,7 +21,7 @@ const handlerClose = () => {
   }
 }
 
-  const escClose = (e) => {
+  const escClose = (e: Event & { key: string }) => {
     if (e.key === "Escape") {
         handlerClose()
       }
@@ -37,11 +38,11 @@ const handlerClose = () => {
      <>
       <ModalOverlay closeModal={(() => handlerClose())}/>
       <div className={styles.container}>
-        <div className={styles.close}><CloseIcon onClick={(() => handlerClose())}/></div>
+        <div className={styles.close}><CloseIcon type='primary' onClick={(() => handlerClose())}/></div>
         {children}
       </div>
     </>
-  ), modalRoot)
+  ), modalRoot as HTMLElement)
   }
 
   Modal.propTypes = {

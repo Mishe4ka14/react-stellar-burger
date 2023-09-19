@@ -11,6 +11,7 @@ export type TIngredient = {
   image_mobile: string;
   image_large: string;
   __v: number;
+  key?: string
 }
 
 export type TOrder = {
@@ -39,4 +40,21 @@ export type TUser = {
 export type TModal = {
   onClose(): void;
   children: JSX.Element
+}
+
+export type TIngredientComponent = {
+  onClick(): void;
+  ing: TIngredient
+}
+
+export type TConstructorItem = {
+  ingredient: TIngredient
+  index: number
+  swap (dragIndex: number, hoverIndex: number): void;
+};
+
+export type TDragItem = {
+  index: number
+  id: string
+  type: string
 }

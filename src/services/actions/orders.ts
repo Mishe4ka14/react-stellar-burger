@@ -1,5 +1,5 @@
 import { createAction } from "@reduxjs/toolkit";
-import { TFeed } from "../types/data";
+import { TFeed } from "../types/types";
 
 export const connect = createAction<string>('orders/conenct');
 export const disconnect = createAction('orders/disconnect');

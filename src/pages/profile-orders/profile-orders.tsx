@@ -6,7 +6,7 @@ import { connect, disconnect } from '../../services/actions/orders';
 import { WSS_API } from "../../utils/burger-api";
 import { useSelector } from "../../hooks/hooks";
 import { useLocation, Link } from "react-router-dom";
-import { TFeed, TOrder } from "../../services/types/data";
+import { TFeed, TOrder } from "../../services/types/types";
 
 export const ProfileOrders = ():JSX.Element => {
 

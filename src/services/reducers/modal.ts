@@ -1,6 +1,6 @@
 import { string } from "prop-types";
 import { MODAL_OPEN, MODAL_CLOSE, TModalActions } from "../actions/modal";
-import { TIngredient, TOrder } from "../types/data";
+import { TIngredient, TOrder } from "../types/types";
 
 type TModalState = {
     modalType: string | null

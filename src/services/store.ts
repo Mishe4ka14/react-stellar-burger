@@ -20,7 +20,7 @@ import {
   wsMessage as orderWsMessage, 
   wsOpen as orderWsOpen
 } from './actions/orders';
-import { TFeed } from "./types/data";
+import { TFeed } from "./types/types";
 
 export type TMiddlewareActions = ({
   wsConnect: Action

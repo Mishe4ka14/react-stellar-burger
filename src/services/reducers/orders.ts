@@ -1,7 +1,7 @@
 import { createSlice, createReducer } from '@reduxjs/toolkit'
 import { WebsocketStatus } from "../../utils/ws-status";
 import { wsConnecting, wsClose, wsError, wsMessage, wsOpen } from "../actions/orders";
-import { TOrder } from '../types/data';
+import { TOrder } from '../types/types';
 
 type TOrdersState = {
   status: string;

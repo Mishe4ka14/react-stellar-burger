@@ -1,5 +1,5 @@
 import { IHeaders, IIngredientResponse, IOptions, IOrderResponse, IOrdersResponse, IRegisterResponse, IResponse } from "../services/types/api";
-import { TIngredient, TOrder, TUser } from "../services/types/data";
+import { TIngredient, TOrder, TUser } from "../services/types/types";
 
 const NORMA_API: string = 'https://norma.nomoreparties.space/api'
 export const WSS_API: string = 'wss://norma.nomoreparties.space/orders'

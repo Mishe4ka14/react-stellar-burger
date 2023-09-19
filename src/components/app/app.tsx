@@ -19,7 +19,7 @@ import { FeedPage } from '../../pages/feed-page/feed-page';
 import { OrderInfo } from '../order-info/order-info';
 import { getIngredients } from '../../services/actions/ingredients';
 
-function App() {
+const App = ():JSX.Element => {
 
   const location = useLocation();
   const navigate = useNavigate();
@@ -41,7 +41,7 @@ function App() {
   return (
     <>
       <Routes location={background || location}>
-        <Route exact path="/" element={<HomePage />} />
+        <Route path="/" element={<HomePage />} />
         <Route path="/login"  element={<OnlyUnAuth component={<LoginPage />} />} />
         <Route path="/register" element={<OnlyUnAuth component={<RegistrationPage />} />}/>
         <Route path="/forgot-password" element={<OnlyUnAuth component={<ForgotPassword />} />}/>

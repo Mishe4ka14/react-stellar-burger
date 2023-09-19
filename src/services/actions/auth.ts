@@ -1,6 +1,6 @@
 import { addUserInfo, getUserInfo, logOutUser, loginUser, registerUser } from "../../utils/burger-api";
 import { AppDispatch, AppThunk } from "../types";
-import { TUser } from "../types/data";
+import { TUser } from "../types/types";
 
 export const LOGIN_REQUEST:'LOGIN_REEQUEST' = 'LOGIN_REEQUEST';
 export const LOGIN_SUCCESS:'LOGIN_SUCCESS' = 'LOGIN_SUCCESS';

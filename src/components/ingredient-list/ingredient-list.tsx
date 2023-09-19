@@ -1,9 +1,8 @@
 import Ingredient from "../ingredient/ingredient";
 import styles from "./ingredient-list.module.css"
-import { ingredientPropType } from "../../utils/prop-types";
 import { useDispatch } from "react-redux";
 import { openIngredientModal } from "../../services/actions/modal";
-import { TIngredient } from "../../services/types/data";
+import { TIngredient } from "../../services/types/types";
 import { FC } from "react";
 
 interface IngredientListProps {

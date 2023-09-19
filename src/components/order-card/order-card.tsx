@@ -4,7 +4,7 @@ import { useSelector } from '../../hooks/hooks';
 import { useLocation } from 'react-router-dom';
 import {useState, useEffect, } from 'react'
 import React from 'react'
-import { TIngredient, TOrder } from '../../services/types/data';
+import { TIngredient, TOrder } from '../../services/types/types';
 
 export const OrderCard = ({order}: {order: TOrder})=> {
   const location = useLocation();

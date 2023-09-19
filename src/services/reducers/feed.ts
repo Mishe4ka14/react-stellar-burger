@@ -1,7 +1,7 @@
 import { createReducer } from '@reduxjs/toolkit'
 import { WebsocketStatus } from "../../utils/ws-status";
 import { wsConnecting, wsClose, wsError, wsMessage, wsOpen } from "../actions/feed";
-import { TOrder } from '../types/data';
+import { TOrder } from '../types/types';
 
 type TFeedState = {
   status: string;

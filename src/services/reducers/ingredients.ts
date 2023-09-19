@@ -1,7 +1,7 @@
 import {GET_INGREDIENTS_FAILED, GET_INGREDIENTS_REQUEST, GET_INGREDIENTS_SUCCESS, TIngredientActions} from '../actions/ingredients'
 import { GET_CONSTRUCTOR_REQUEST, GET_CONSTRUCTOR_SUCCESS, GET_CONSTRUCTOR_FAILED, ADD_INGREDIENT, REMOVE_INGREDIENT, CHANGE_INGREDIENT, TConstructorActions } from "../actions/constructor"
-import { TIngredient, TOrder } from '../types/data.js'
-
+import { TIngredient, TOrder } from '../types/types.js'
+import { nanoid } from 'nanoid';
 type TIngredientState = {
   ingredient: Array<TIngredient>;
   ingredientsRequest: boolean;
@@ -46,7 +46,11 @@ export const ingredientsReducer = (store = initialState, action: TIngredientActi
       return {...store, constructorRequest: false, constructorFailed: true}
     }
     case ADD_INGREDIENT : {  
-      if (action.ingredient.type === "bun") {
+      const newIngredient = {
+        ...action.ingredient,
+        key: nanoid(), // Генерируем уникальный идентификатор
+      };
+      if (newIngredient.type === "bun") {
         return {...store, bun: action.ingredient }
     } else {
         return {...store, constructor: [...store.constructor, action.ingredient]

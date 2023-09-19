@@ -3,9 +3,9 @@ import { Tab, } from '@ya.praktikum/react-developer-burger-ui-components'
 import React from 'react'
 import IngredientList from '../ingredient-list/ingredient-list'
 import { useEffect } from 'react'
-import {  useSelector } from 'react-redux';
+import {  useSelector } from '../../hooks/hooks';
 
-const BurgerIngredients = () => { 
+const BurgerIngredients = ():JSX.Element => { 
   
   const {ingredient} = useSelector(store => store.ingredient)
   const data = ingredient;
@@ -22,7 +22,7 @@ const BurgerIngredients = () => {
 
         //вычисляем расстояние до каждой секции
         const distances = sections.map((section) => {
-          const element = document.querySelector(section);
+          const element = document.querySelector(section)!;
           const distance = Math.abs(element.getBoundingClientRect().top - 90);
           return { section, distance };
         });
@@ -37,10 +37,10 @@ const BurgerIngredients = () => {
       };
     
       const scrollWrapper = document.querySelector('.custom-scroll');
-      scrollWrapper.addEventListener('scroll', handleScroll, { passive: true });
+      scrollWrapper?.addEventListener('scroll', handleScroll, { passive: true });
 
       return () => {
-        scrollWrapper.removeEventListener('scroll', handleScroll);
+        scrollWrapper?.removeEventListener('scroll', handleScroll);
       };
     }, []);
 
@@ -60,11 +60,11 @@ const BurgerIngredients = () => {
       </div>
       <ul className={`${styles.scroll} custom-scroll`}>
           <h3 className="bun text text_type_main-medium mb-6">Булки</h3>
-          <IngredientList filter={buns} type="bun"/>
+          <IngredientList filter={buns} />
           <h3 className="sauce text text_type_main-medium mt-10 mb-6">Соусы</h3>
-          <IngredientList filter={sauces} type="sauce"/>
+          <IngredientList filter={sauces} />
           <h3 className="main text text_type_main-medium mt-10 mb-6">Начинки</h3>
-          <IngredientList filter={mains} type="main"/>
+          <IngredientList filter={mains} />
       </ul>
     </section>
   )

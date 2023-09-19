@@ -1,4 +1,4 @@
-import { TIngredient, TOrder } from "./data";
+import { TIngredient, TOrder } from "./types";
 
 export interface IResponse extends Response {
   success: boolean;

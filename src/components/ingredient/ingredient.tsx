@@ -1,13 +1,12 @@
 import styles from './ingredient.module.css'
 import {CurrencyIcon, Counter} from '@ya.praktikum/react-developer-burger-ui-components'
-import PropTypes from 'prop-types';
-import { ingredientPropType } from '../../utils/prop-types';
 import { useDrag } from 'react-dnd';
 import { useState, useEffect } from 'react';
-import { useSelector, } from 'react-redux';
+import { useSelector, } from '../../hooks/hooks';
 import { useLocation, Link } from 'react-router-dom';
+import { TIngredientComponent } from '../../services/types/types';
 
-const Ingredient = ({ing, onClick}) => {
+const Ingredient = ({ing, onClick}:TIngredientComponent):JSX.Element => {
 
   const location = useLocation();
 
@@ -52,7 +51,7 @@ useEffect(() => {
         <img src={image} alt={name} />
         <div className={styles.container}>
           <p className={`${styles.price} text text_type_main-default mr-2 pt-1 pb-1`}>{price}</p>
-          <CurrencyIcon/>
+          <CurrencyIcon type='primary'/>
         </div>
         <p className="text text_type_main-default">{name}</p>
       </div>
@@ -60,8 +59,4 @@ useEffect(() => {
   )
 }
 
-Ingredient.propTypes = {
-  ing: ingredientPropType,
-  onClick: PropTypes.func.isRequired
-}
 export default Ingredient

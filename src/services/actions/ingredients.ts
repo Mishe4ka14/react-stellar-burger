@@ -1,7 +1,7 @@
 import { getIngredientsRequest } from "../../utils/burger-api";
 import { AppDispatch, AppThunk } from "../types";
 import { IIngredientResponse } from "../types/api";
-import { TIngredient } from "../types/data";
+import { TIngredient } from "../types/types";
 
 export const GET_INGREDIENTS_REQUEST:'GET_INGREDIENTS_REQUEST'  = 'GET_INGREDIENTS_REQUEST';
 export const GET_INGREDIENTS_SUCCESS:'GET_INGREDIENTS_SUCCESS' = 'GET_INGREDIENTS_SUCCESS';

@@ -6,7 +6,7 @@ import { FormattedDate, CurrencyIcon } from "@ya.praktikum/react-developer-burge
 import {useState, useEffect, } from 'react'
 import { getOrder } from '../../utils/burger-api';
 import React from 'react';
-import { TFeed, TIngredient, TOrder } from '../../services/types/data';
+import { TFeed, TIngredient, TOrder } from '../../services/types/types';
 
 export const OrderInfo = ():JSX.Element => {
 

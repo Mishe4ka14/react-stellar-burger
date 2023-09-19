@@ -1,6 +1,6 @@
 import { LOGIN_REQUEST, LOGIN_FAILED, LOGIN_SUCCESS, REGISTER_FAILED, REGISTER_SUCCESS, REGISTER_REQUEST, LOGOUT_FAILED, LOGOUT_REQUEST, LOGOUT_SUCCESS, SET_AUTH_CHECKED, SET_USER, TAuthActions, } from "../actions/auth"
 import { TAppActions } from "../types";
-import { TFeed, TUser } from "../types/data";
+import { TFeed, TUser } from "../types/types";
 
 type TAuthInitialState = {
   user: null | TUser;

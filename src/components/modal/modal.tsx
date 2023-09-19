@@ -6,7 +6,7 @@ import ModalOverlay from '../modal-overlay/modal-overlay';
 import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
 import { closeModal } from '../../services/actions/modal';
-import { TModal } from '../../services/types/data';
+import { TModal } from '../../services/types/types';
 
 const modalRoot = document.getElementById('modal-root')
 

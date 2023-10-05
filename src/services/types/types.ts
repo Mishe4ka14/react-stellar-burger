@@ -14,6 +14,17 @@ export type TIngredient = {
   key?: string
 }
 
+// export type TDetails = {
+//   success: boolean
+//   name: string;
+//   ingredients: Array<string>;
+//   status: string;
+//   number: number;
+//   createdAt: string;
+//   _id: string
+//   price: string
+//   order: TOrder
+// }
 
 export type TOrder = {
   success: boolean
@@ -24,7 +35,7 @@ export type TOrder = {
   createdAt: string;
   _id: string
   price: string
-  order: TOrder
+  order: any
 }
 
 export type TFeed = {
